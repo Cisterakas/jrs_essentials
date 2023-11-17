@@ -159,18 +159,18 @@ const deleteAll = () => {
                     <div class="div-32">
                       
                       <div class="column-6">
-                        <a href="/cart" type="button" class="div-33">
+                        <router-link to="/cart" type="button" class="div-33">
                           <img
                             loading="lazy"
                             src="https://cdn.builder.io/api/v1/image/assets/TEMP/4932dfa6-4cd9-4213-9f5e-355636d2c18a?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                             class="img-13"
                           />
                           <div class="div-34">Add To Cart</div>
-                        </a>
+                        </router-link>
                       </div>
                       <div class="column-7">
                         <div class="div-35">
-                          <a href="/checkout" type="button" class="div-36">Buy Now</a>
+                          <router-link to="/checkout" type="button" class="div-36">Buy Now</router-link>
                           
                         </div>
                       </div>
@@ -304,7 +304,7 @@ const deleteAll = () => {
             </div>
           </div>
         </div>
-        <a href="/products" type="button" class="back">BACK</a>
+        <router-link to="/products" type="button" class="back">BACK</router-link>
        
      
       <FooterBar/>

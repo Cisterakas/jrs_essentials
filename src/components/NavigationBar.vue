@@ -14,16 +14,16 @@
         <!-- <button class="box" id="shop">Shop</button>
           <button class="box" id="features">Features</button>
             <button class="box" id="contact">Contact</button> -->
-            <a href="/cart" id="cart" type="button" class="box">
+            <router-link to="/cart" id="cart" type="button" class="box">
              <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/89e840a4-5a8c-4a6d-adee-aa72786b3dd8?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
           class="img-2"
         />
      
-    </a>
+    </router-link>
 
-      <a href="/login" type="button" class="btnLogin">Login</a>
+      <router-link to="/login" type="button" class="btnLogin">Login</router-link>
     </div>
       </div>
     </div>
