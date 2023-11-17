@@ -1,11 +1,6 @@
-<script>
-export default {
-  name: 'App',
-}
+<script setup>
+
 </script>
-<template>
-<div id="app">
-    <router-view/>
-  </div>
-  
+<template>  
+    <router-view></router-view>
 </template>

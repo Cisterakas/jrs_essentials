@@ -20,11 +20,12 @@ import FooterBar from './Footer.vue'
                     products and essentials designed to enhance your natural
                     radiance.
                   </div>
-                  <a href="/products" type="button" class="button-shop">
+                  <router-link to="/products" type="button" class="button-shop">
+                  
                   
 <div class="shop-now" >
 SHOP NOW </div>
-</a>
+</router-link>
 
                 </div>
               </div>
