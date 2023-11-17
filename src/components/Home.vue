@@ -51,7 +51,8 @@ SHOP NOW </div>
           <div class="div-14">
             <div class="div-15">
               <div class="column-3">
-                <a href="/order/bleachpeel-soap" id="bleachpeel" type="button" class="box">
+                <router-link to="/order/bleachpeel-soap" id="bleachpeel" type="button" class="box">
+              
                   <img
                     loading="lazy"
                     srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/2f58e558-abcd-400a-bbff-e3dbbea6c4a1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/2f58e558-abcd-400a-bbff-e3dbbea6c4a1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/2f58e558-abcd-400a-bbff-e3dbbea6c4a1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/2f58e558-abcd-400a-bbff-e3dbbea6c4a1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/2f58e558-abcd-400a-bbff-e3dbbea6c4a1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/2f58e558-abcd-400a-bbff-e3dbbea6c4a1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/2f58e558-abcd-400a-bbff-e3dbbea6c4a1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/2f58e558-abcd-400a-bbff-e3dbbea6c4a1?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -94,10 +95,10 @@ SHOP NOW </div>
                       />
                     </div>
                   </div>
-                </a>
+                </router-link>
               </div>
               <div class="column-4">
-                <a href="/order/15in1" id="15in1" type="button" class="box">
+                <router-link to="/order/15in1" id="15in1" type="button" class="box">
                   <img
                     loading="lazy"
                     srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/48ece361-0153-47b9-8326-fd57381afd72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/48ece361-0153-47b9-8326-fd57381afd72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/48ece361-0153-47b9-8326-fd57381afd72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/48ece361-0153-47b9-8326-fd57381afd72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/48ece361-0153-47b9-8326-fd57381afd72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/48ece361-0153-47b9-8326-fd57381afd72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/48ece361-0153-47b9-8326-fd57381afd72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/48ece361-0153-47b9-8326-fd57381afd72?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -138,10 +139,10 @@ SHOP NOW </div>
                       />
                     </div>
                   </div>
-                </a>
+                </router-link>
               </div>
               <div class="column-5">
-                <a href="/order/GlutaOatmealSButter" id="bleachpeel" type="button" class="box">
+                <router-link to="/order/GlutaOatmealSButter" id="bleachpeel" type="button" class="box">
                   <img
                     loading="lazy"
                     srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/83fda408-1925-476b-b817-e69d4328688e?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/83fda408-1925-476b-b817-e69d4328688e?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/83fda408-1925-476b-b817-e69d4328688e?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/83fda408-1925-476b-b817-e69d4328688e?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/83fda408-1925-476b-b817-e69d4328688e?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/83fda408-1925-476b-b817-e69d4328688e?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/83fda408-1925-476b-b817-e69d4328688e?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/83fda408-1925-476b-b817-e69d4328688e?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
@@ -183,7 +184,7 @@ SHOP NOW </div>
                       />
                     </div>
                   </div>
-                </a>
+                </router-link>
               </div>
             </div>
           </div>
