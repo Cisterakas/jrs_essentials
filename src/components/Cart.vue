@@ -1,6 +1,36 @@
 <script setup>
 import NavigationBar from './NavigationBar.vue'
 import FooterBar from './Footer.vue'
+import { ref } from 'vue';
+
+
+const counters = ref([1, 1, 1]);
+const initialPrices = ref([150, 110, 80]);
+const prices = [150, 110, 80];
+
+const increment = (index) => {
+  counters.value[index]++;
+  initialPrices.value[index] += prices[index];
+};
+
+const decrement = (index) => {
+  if (counters.value[index]) {
+    counters.value[index]--;
+    initialPrices.value[index] -= prices[index];
+  } else {
+    counters.value[index] = 0;
+    initialPrices.value[index] = 0;
+  }
+};
+
+const deleteAll = (index) => {
+  counters.value[index] = 0;
+  initialPrices.value[index] = 0;
+};
+
+const calculateTotal = () => {
+  return initialPrices.value.reduce((sum, price) => sum + price, 0);
+};
 </script>
 
 <template>
@@ -12,7 +42,7 @@ import FooterBar from './Footer.vue'
             <div class="div-5">Shopping Cart</div>
             <div class="div-6">
               <div class="div-7">In processing</div>
-              <div class="div-8">cancel</div>
+              <div type="button" class="div-8">cancel</div>
             </div>
           </div>
           <div class="div-9">
@@ -25,14 +55,17 @@ import FooterBar from './Footer.vue'
                       <div class="div-15">Bleachpeel Soap</div>
                       <div class="div-16">
                         <div class="div-17">
-                          <div class="div-18">-</div>
-                          <div class="div-19">2</div>
-                          <div class="div-20">+</div>
+                          
+                          <div type="button" class="div-18" @click="decrement(0)">-</div>
+                          <div class="div-19">{{ counters[0] }}</div>
+                          <div type="button" class="div-20" @click="increment(0)">+</div>
                         </div>
                         <img
+                          type="button"
                           loading="lazy"
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/453c7b02-cab0-44bc-87b6-17f047db798b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                           class="img"
+                          @click="deleteAll(0)"
                         />
                       </div>
                     </div>
@@ -40,12 +73,12 @@ import FooterBar from './Footer.vue'
                 </div>
               </div>
               <div class="div-21">
-                <div class="div-22">2 pcs</div>
+                <div class="div-22">{{ counters[0] }} pcs</div>
                 <div class="div-23">Total:</div>
               </div>
               <div class="div-24">
                 <div class="div-25">₱ 150.00</div>
-                <div class="div-26">₱ 300.00</div>
+                <div class="div-26">₱ {{ initialPrices[0] }}.00</div>
               </div>
             </div>
             <div class="div-27"></div>
@@ -57,15 +90,19 @@ import FooterBar from './Footer.vue'
                     <div class="div-32">
                       <div class="div-33">15 in 1 Soap | 135g</div>
                       <div class="div-34">
+                        
                         <div class="div-35">
-                          <div class="div-36">-</div>
-                          <div class="div-37">2</div>
-                          <div class="div-38">+</div>
+                          
+                          <div type="button" class="div-36" @click="decrement(1)">-</div>
+                          <div class="div-37">{{ counters[1] }}</div>
+                          <div type="button" class="div-38" @click="increment(1)">+</div>
                         </div>
                         <img
+                          type="button"
                           loading="lazy"
                           src="https://cdn.builder.io/api/v1/image/assets/TEMP/a2d08b6f-cc0d-409f-9d03-c32aad893a36?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                           class="img"
+                          @click="deleteAll(1)"
                         />
                       </div>
                     </div>
@@ -73,12 +110,12 @@ import FooterBar from './Footer.vue'
                 </div>
               </div>
               <div class="div-39">
-                <div class="div-40">2 pcs</div>
+                <div class="div-40">{{ counters[1] }} pcs</div>
                 <div class="div-41">Total:</div>
               </div>
               <div class="div-42">
                 <div class="div-43">₱ 110.00</div>
-                <div class="div-44">₱ 220.0</div>
+                <div class="div-44">₱ {{ initialPrices[1] }}.00</div>
               </div>
             </div>
             <div class="div-45"></div>
@@ -90,15 +127,19 @@ import FooterBar from './Footer.vue'
                     <div class="div-50">
                       <div class="div-51">Glutamato with Grapeseed</div>
                       <div class="div-52">
+                        
                         <div class="div-53">
-                          <div class="div-54">-</div>
-                          <div class="div-55">2</div>
-                          <div class="div-56">+</div>
+                          
+                          <div type="button" class="div-54" @click="decrement(2)">-</div>
+                          <div class="div-55">{{ counters[2] }}</div>
+                          <div type="button" class="div-56" @click="increment(2)">+</div>
                         </div>
                         <img
+                          type="button"
                           loading="lazy"
-                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/0bb92a2a-7d27-4507-ac1c-3034943e52aa?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/a2d08b6f-cc0d-409f-9d03-c32aad893a36?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                           class="img"
+                          @click="deleteAll(2)"
                         />
                       </div>
                     </div>
@@ -106,18 +147,18 @@ import FooterBar from './Footer.vue'
                 </div>
               </div>
               <div class="div-57">
-                <div class="div-58">2 pcs</div>
+                <div class="div-58">{{ counters[2] }} pcs</div>
                 <div class="div-59">Total:</div>
               </div>
               <div class="div-60">
                 <div class="div-61">₱ 80.00</div>
-                <div class="div-62">₱ 160.00</div>
+                <div class="div-62">₱ {{ initialPrices[2] }}.00</div>
               </div>
             </div>
             <div class="div-63"></div>
             <div class="div-64">
               <div class="div-65">Total</div>
-              <div class="div-66">₱ 680.00</div>
+              <div class="div-66">₱ {{ calculateTotal() }}.00</div>
             </div>
             <div class="div-67">
               <div class="div-68">Delivery</div>
@@ -125,14 +166,14 @@ import FooterBar from './Footer.vue'
             </div>
             <div class="div-70">
               <div class="div-71">Subotal</div>
-              <div class="div-72">₱ 680.00</div>
+              <div class="div-72">₱ {{ calculateTotal() }}.00</div>
             </div>
           </div>
         </div>
       </div>
       <div class="div-73">
         <input type="text" class="div-74" placeholder="Add a Note to Your Order">
-        <a href="/checkout" type="button" class="div-75">Check Out</a>
+        <router-link to="/checkout" type="button" class="div-75">Check Out</router-link>
        
       </div>
     </div>

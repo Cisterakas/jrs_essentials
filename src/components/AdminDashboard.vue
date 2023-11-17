@@ -9,54 +9,60 @@
               srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/fec6530d-08fe-483c-9c94-894d35ef8f78?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/fec6530d-08fe-483c-9c94-894d35ef8f78?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/fec6530d-08fe-483c-9c94-894d35ef8f78?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/fec6530d-08fe-483c-9c94-894d35ef8f78?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/fec6530d-08fe-483c-9c94-894d35ef8f78?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/fec6530d-08fe-483c-9c94-894d35ef8f78?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/fec6530d-08fe-483c-9c94-894d35ef8f78?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/fec6530d-08fe-483c-9c94-894d35ef8f78?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
               class="img"
             />
-            <a href="/adminDashboard" class="div-5" type="button">
+            <router-link to="/adminDashboard" class="div-5" type="button">
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/96d0d856-6e24-4a21-a516-443d71fd5871?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                 class="img-2"
               />
               <div class="div-6">Dashboard</div>
-          </a>
-          <a href="/adminDashboard" class="div-7" type="button">
+          </router-link>
+          <router-link to="/adminDashboard" class="div-7" type="button">
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/22eacf5e-a6c8-420c-99ef-d02f6db66588?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                 class="img-3"
               />
               <div class="div-8">Products</div>
-            </a>
-            <div class="div-9">
+            </router-link>
+            <router-link to="/adminDashboard" class="div-9" type="button">
+            
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/eacb446d-6ae8-4f54-952c-f4f0d501d270?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                 class="img-4"
               />
               <div class="div-10">Orders</div>
-            </div>
-            <div class="div-11">
+            
+          </router-link>
+          <router-link to="/adminDashboard" class="div-11" type="button">
+            
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/46480ab6-5a37-4cc4-ab80-20440a1b13d4?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                 class="img-5"
               />
               <div class="div-12">Reviews</div>
-            </div>
-            <div class="div-13">
+           
+          </router-link>
+          <router-link to="/adminDashboard" class="div-13" type="button">
+           
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/6cd9d89f-50bd-4009-a2b2-6de29ae10647?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                 class="img-6"
               />
               <div class="div-14">Transactions</div>
-            </div>
-            <a href="/login" class="div-15" type="button">
+           
+          </router-link>
+            <router-link to="/login" class="div-15" type="button">
               <img
                 loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/dc1277f6-8330-4cc9-b3df-dde59a9ff395?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
                 class="img-7"
               />
               <div class="div-16">Logout</div>
-            </a>
+            </router-link>
           </div>
         </div>
       </div>

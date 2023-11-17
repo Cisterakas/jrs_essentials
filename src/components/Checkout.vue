@@ -203,7 +203,7 @@ const handleImageUpload = (event) => {
                   </div>
                 </div>
               </div>
-              <a href="/" type="button" class="div-60">Place Order</a>
+              <router-link to="/" type="button" class="div-60">Place Order</router-link>
             </div>
           </div>
         </div>

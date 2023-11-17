@@ -16,7 +16,7 @@
           <input type="text" placeholder="Name" />
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
-		  <a href="/accntInfo" class="button" type="button">Sign Up</a>
+		  <router-link to="/accntInfo" class="button" type="button">Sign Up</router-link>
           <!-- <button>Sign Up</button> -->
         </form>
       </div>
@@ -33,8 +33,8 @@
           <input type="password" placeholder="Password" />
           <a href="#">Forgot your password?</a>
 		  
-          <a href="/accntInfo" class="button" type="button">Sign In</a>
-		  <a href="/adminDashboard" class="button" type="button">Sign In As Admin</a>
+          <router-link to="/accntInfo" class="button" type="button">Sign In</router-link>
+		  <router-link to="/adminDashboard" class="button" type="button">Sign In As Admin</router-link>
 		
         </form>
       </div>
@@ -59,7 +59,6 @@
   
   <script setup>
   import NavigationBar from './NavigationBar.vue'
-import FooterBar from './Footer.vue'
   import { ref } from 'vue';
   
   const isSignUp = ref(false);

@@ -14,8 +14,8 @@ import FooterBar from './Footer.vue'
                 <div class="div-6">Account</div>
                 
                 <div type="button" class="div-7">Account Information</div>
-                <a href="/changePass" type="button" class="div-8">Change password</a>
-                <a href="/toPay" type="button" class="div-8">Orders</a>
+                <router-link to="/changePass" type="button" class="div-8">Change password</router-link>
+                <router-link to="/toPay" type="button" class="div-8">Orders</router-link>
           
               </div>
             </div>
@@ -37,7 +37,7 @@ import FooterBar from './Footer.vue'
                     </div>
                   </div>
                 </div>
-                <a href="/changePass" type="button" class="div-22">Save</a>
+                <router-link to="/changePass" type="button" class="div-22">Save</router-link>
                 
               </div>
             </div>
