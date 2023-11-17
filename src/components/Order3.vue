@@ -304,7 +304,7 @@ const deleteAll = () => {
             </div>
           </div>
         </div>
-        <router-link href="/products" type="button" class="back">BACK</router-link>
+        <router-link to="/products" type="button" class="back">BACK</router-link>
        
      
       <FooterBar/>
