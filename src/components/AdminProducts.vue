@@ -1,15 +1,28 @@
 <script setup>
 import { ref } from 'vue';
 const categories = ref([
-    { id: 1, docNum: 4, docType: "Bleachpeel Soap", dateReq: "67 Sales", claim: "₱ 8,012.00", sched: "52%" },
-    { id: 2, docNum: 4, docType: "15 in 1 Soap", dateReq: "50 Sales", claim: "₱ 7,342.00", sched: "49%" },
-    { id: 3, docNum: 4, docType: "Gluta Oatmeal with Shea Butter & Avocado Oil", dateReq: "47 Sales", claim: "₱ 7,012.00", sched: "30%" },
-    { id: 4, docNum: 4, docType: "Glutamato with Grapeseed", dateReq: "38 Sales", claim: "₱ 5,612.00", sched: "30%" },
-    { id: 5, docNum: 4, docType: "Gluta Oatmeal with Milk & Honey", dateReq: "30 Sales", claim: "₱ 5,112.00", sched: "27%" },
-    
-
+    { id: 1, docNum: 4, docType: "Bleachpeel Soap", dateReq: "15", sched: "₱150.00" },
+    { id: 2, docNum: 4, docType: "15 in 1 Soap", dateReq: "15", sched: "₱110.00" },
+    { id: 3, docNum: 4, docType: "Gluta Oatmeal with Shea Butter & Avocado Oil", dateReq: "15", sched: "₱100.00" },
+    { id: 4, docNum: 4, docType: "Glutamato with Grapeseed", dateReq: "15", sched: "₱80.00" },
+    { id: 5, docNum: 4, docType: "Gluta Oatmeal with Milk & Honey", dateReq: "15", sched: "₱100.00" },
+    { id: 6, docNum: 4, docType: "Glutamansi with Baking Soda", dateReq: "17", sched: "₱80.00" }, 
+    { id: 7, docNum: 4, docType: "Power Pink", dateReq: "17", sched: "₱110.00" }, 
+    { id: 8, docNum: 4, docType: "Wonder Green", dateReq: "17", sched: "₱110.00" }, 
+    { id: 9, docNum: 4, docType: "Fresh Snow Lotion Combo", dateReq: "17", sched: "₱2,000.00" }, 
+    { id: 10, docNum: 4, docType: "Assorted Body Scrubs 10pcs", dateReq: "17", sched: "₱130.00" }, 
+    { id: 11, docNum: 4, docType: "Blacked Soap", dateReq: "17", sched: "₱130.00" }, 
+    { id: 12, docNum: 4, docType: "Madre de Cacao", dateReq: "17", sched: "₱120.00" }, 
+    { id: 13, docNum: 4, docType: "Gluta Oatmeal with  Lavander", dateReq: "17", sched: "₱120.00" }, 
+    { id: 14, docNum: 4, docType: "Gluta Pink Soap", dateReq: "17", sched: "₱110.00" }, 
+    { id: 15, docNum: 4, docType: "Arbutin Soap", dateReq: "17", sched: "₱110.00" }, 
+    { id: 16, docNum: 4, docType: "Yellow Pop Soap", dateReq: "17", sched: "₱110.00" }, 
+    { id: 17, docNum: 4, docType: "Assorted soaps 25pcs", dateReq: "17", sched: "₱1,110.00" }, 
+    { id: 18, docNum: 4, docType: "Espresso Coffee Body Scrub", dateReq: "17", sched: "₱210.00" }, 
+    { id: 19, docNum: 4, docType: "Earthberry Strawberry Body Scrubs", dateReq: "17", sched: "₱130.00" }, 
+    { id: 20, docNum: 4, docType: "Matcha Green Tea Body Scrub", dateReq: "17", sched: "₱210.00" }, 
   ]);
-</script>
+</script> 
 
 <template>
   <div class="div">
@@ -84,8 +97,7 @@ const categories = ref([
           <div class="div-18">
             <div class="div-19">
               <div class="div-20">
-                <div class="div-21">Primary</div>
-                <div class="div-22">Dashboard</div>
+                <div class="div-22">Products</div>
               </div>
               <div class="div-23">
                 <img
@@ -105,178 +117,40 @@ const categories = ref([
             </div>
             <div class="div-26">
               <div class="div-27">
-                <div class="div-28">
-                  <div class="div-29">Data Refresh</div>
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/5a3e6d8c-b978-4471-a06e-d0220fed30af?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-10"
-                  />
-                </div>
                 <div class="div-30">
                   <div class="div-31">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/b034335a-0d5d-4726-ab9a-fbebd23e80bb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-11"
-                    />
-                    <div class="div-32">November 10, 2023</div>
-                  </div>
-                </div>
-              </div>
-              <div class="div-33">
-                <div class="div-34">
-                  <div class="column-3">
-                    <div class="div-35">
-                      <div class="div-36">
-                        <div class="div-37">
-                          <div class="div-38">Income</div>
-                          <div class="div-39">
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/ef0448fd-e4f3-4535-b4ee-9f8b7eb9d352?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                              class="img-12"
-                            />
-                            <div class="div-40">10.0%</div>
-                          </div>
-                        </div>
-                        <div class="div-41">₱6,680.00</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="column-4">
-                    <div class="div-42">
-                      <div class="div-43">
-                        <div class="div-44">
-                          <div class="div-45">Expenses</div>
-                          <div class="div-46">
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/da83834b-f8e2-49da-988b-2ee5fa50aabd?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                              class="img-13"
-                            />
-                            <div class="div-47">3.0%</div>
-                          </div>
-                        </div>
-                        <div class="div-48">₱3,680.00</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="column-5">
-                    <div class="div-49">
-                      <div class="div-50">
-                        <div class="div-51">New Orders</div>
-                        <div class="div-52">
-                          <img
-                            loading="lazy"
-                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/c744d136-0709-4c34-95ff-c4e41ce6d314?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                            class="img-14"
-                          />
-                          <div class="div-53">3.2%</div>
-                        </div>
-                      </div>
-                      <div class="div-54">24</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="div-55">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e157c284-d07b-41b1-a8cd-72c544aa15ec?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-15"
-                />
-                <div class="div-56">Sales Statistics 2023</div>
-                <div class="div-57"></div>
-                <div class="div-58">
-                  <div class="div-59">
-                    <div class="div-60">80</div>
-                    <div class="div-61">60</div>
-                    <div class="div-62">40</div>
-                    <div class="div-63">20</div>
-                    <div class="div-64">0</div>
-                  </div>
-                  <div class="div-65">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/db58f081-7baf-49c9-9334-c8c17ac24571?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-16"
-                    />
-                    <div class="div-66">
-                      <div class="div-67">JAN</div>
-                      <div class="div-68">FEB</div>
-                      <div class="div-69">MAR</div>
-                      <div class="div-70">APR</div>
-                      <div class="div-71">MAY</div>
-                      <div class="div-72">JUN</div>
-                      <div class="div-73">JUL</div>
-                      <div class="div-74">AUG</div>
-                      <div class="div-75">SEP</div>
-                      <div class="div-76">OCT</div>
-                      <div class="div-77">NOV</div>
-                      <div class="div-78">DEC</div>
-                    </div>
+                  
+                    <div class="div-32">Add Product</div>
                   </div>
                 </div>
               </div>
               <div class="div-79">
-                <div class="div-80">
-                  <div class="div-81">Top Selling Products</div>
-                  <div class="div-82">
-                    <div class="div-83">Filter date by</div>
-                    <div class="div-84" type="button">This week</div>
-                    <div class="div-85" type="button">This month</div>
-                    <div class="div-86" type="button">This year</div> 
-                  </div>
-                </div>
 
                 <table class="table table-striped"  >
+                    <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>ID</th>
+              <th>Stock</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
      
           <tbody class="div-87">
             <tr v-for="category in categories" :key="category.id">
               <td >  
-                <img v-if="category.id === 1"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/38aa3e8c-e8cc-4488-b37c-643736d94028?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-17"
-                    />
-                    <img v-else-if="category.id === 2"
-                      loading="lazy"
-                      srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-19"
-                    />
-                    <img v-else-if="category.id === 3"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/aebf0707-93d5-470b-bf57-f0233d1247cb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-21"
-                    />
-                    <img v-else-if="category.id === 4"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a595844-2fc2-4e6a-8ace-c57a01fdef51?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-23"
-                    />
-                    <img v-else-if="category.id === 5"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/b07e6af3-5691-4a64-87b0-1ab200d6b97b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-25"
-                    />
+                {{ category.docType }}
                   
                   </td>
-              <td >{{ category.docType }}</td>
+              <td >{{ category.id }}</td>
               <td >{{ category.dateReq }}</td>
-              <td >{{ category.claim }}</td>
               <td >
-                <div class="div-95">{{ category.sched }}</div></td>
+                {{ category.sched }}</td>
             
               <td >
-                
-                <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/114f2fa6-8e85-43ee-946b-b84ea5bd7655?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-18"
-                    />
-              
-              
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/38da04359e32c5d8dcdfba3d9116bfcde5c468f31ea27c89365cf510c2296e4f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&" class="header-image" />
+      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/fcc9969f362bc56325fa68903a38d3ee745399a77a034d984891cb0c57182514?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&" class="header-image-2" />
               </td>
          
             </tr>
@@ -295,6 +169,9 @@ const categories = ref([
 
 
 <style scoped>
+thead{
+  background-color: #e0ffed;
+}
 .header-image {
   aspect-ratio: 1;
   object-fit: contain;
