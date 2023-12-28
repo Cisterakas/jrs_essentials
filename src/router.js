@@ -20,6 +20,7 @@ import AdminDasboard from './components/AdminDashboard.vue';
 import AdminProducts from './components/AdminProducts.vue';
 import AdminOrders from './components/AdminOrders.vue';
 import AdminReview from './components/AdminReview.vue';
+import AdminTransaction from './components/AdminTransactions.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -43,6 +44,7 @@ const routes = [
     { path: '/adminProducts', component: AdminProducts},  
     { path: '/adminOrder', component: AdminOrders}, 
     { path: '/adminReview', component: AdminReview}, 
+    { path: '/adminTransaction', component: AdminTransaction}, 
 ];
 
 const router = createRouter({

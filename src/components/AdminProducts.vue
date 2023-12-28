@@ -71,7 +71,7 @@ const categories = ref([
               <div class="div-12">Reviews</div>
            
           </router-link>
-          <router-link to="/adminDashboard" class="div-13" type="button">
+          <router-link to="/adminTransaction" class="div-13" type="button">
            
               <img
                 loading="lazy"
