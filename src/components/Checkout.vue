@@ -70,7 +70,7 @@ const handleImageUpload = (event) => {
                     Phone Number: 09772700065<br />
                     Please screenshot this invoice and settle your payment
                     within 2 DAYS after placing your order. Kindly send your
-                    proof of payment in our FACEBOOK account @lustrousdvo
+                    proof of payment in our FACEBOOK account @jrsessential
                     together with your order number.<br />
                     (GCASH to GCASH transaction only)
                   </div>
@@ -120,7 +120,7 @@ const handleImageUpload = (event) => {
                     Account number: 9839182918<br />
                     Please screenshot this invoice and settle your payment
                     within 2 DAYS after placing your order. Kindly send your
-                    proof of payment in our INSTAGRAM account @juvessentials
+                    proof of payment in our INSTAGRAM account @jrsessential
                     together with your order number.
                   </div>
                 </div>
@@ -140,7 +140,7 @@ const handleImageUpload = (event) => {
                     Account number: 9932567623<br />
                     Please screenshot this invoice and settle your payment
                     within 2 DAYS after placing your order. Kindly send your
-                    proof of payment in our INSTAGRAM account @juvessentials
+                    proof of payment in our INSTAGRAM account @jrsessential
                     together with your order number.
                   </div>
                 </div>

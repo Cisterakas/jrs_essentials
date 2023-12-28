@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue';
 const categories = ref([
-    { id: 1, docNum: 4, docType: "Bleachpeel Soap", dateReq: "67 Sales", claim: "₱ 8,012.00", sched: "52%" },
-    { id: 2, docNum: 4, docType: "15 in 1 Soap", dateReq: "50 Sales", claim: "₱ 7,342.00", sched: "49%" },
-    { id: 3, docNum: 4, docType: "Gluta Oatmeal with Shea Butter & Avocado Oil", dateReq: "47 Sales", claim: "₱ 7,012.00", sched: "30%" },
-    { id: 4, docNum: 4, docType: "Glutamato with Grapeseed", dateReq: "38 Sales", claim: "₱ 5,612.00", sched: "30%" },
-    { id: 5, docNum: 4, docType: "Gluta Oatmeal with Milk & Honey", dateReq: "30 Sales", claim: "₱ 5,112.00", sched: "27%" },
+    { id: 1, docNum: 4, docType: "Maggi S.", dateReq: "₱ 710.00 ", claim: "5 Items", sched: "7535", status: "Pending" ,date: "11/11/23"},
+    { id: 2, docNum: 4, docType: "Bruce C.", dateReq: "50 Sales", claim: "7 Items", sched: "5724", status: "Confirmed" ,date: "01/11/23"},
+    { id: 3, docNum: 4, docType: "Becca A.", dateReq: "47 Sales", claim: "4 Items", sched: "2775", status: "Returned" ,date: "5/10/23   "},
+    { id: 4, docNum: 4, docType: "Brian M.", dateReq: "38 Sales", claim: "3 Items", sched: "2427", status: "Out of Delivery" ,date: "8/11/23"},
+    { id: 5, docNum: 4, docType: "Hadel N.", dateReq: "30 Sales", claim: "2 Items", sched: "2578", status: "Pending" ,date: "11/11/23"},
     
 
   ]);
@@ -38,7 +38,7 @@ const categories = ref([
               />
               <div class="div-8">Products</div>
             </router-link>
-            <router-link to="/adminOrder" class="div-9" type="button">
+            <router-link to="/adminDashboard" class="div-9" type="button">
             
               <img
                 loading="lazy"
@@ -84,8 +84,8 @@ const categories = ref([
           <div class="div-18">
             <div class="div-19">
               <div class="div-20">
-                <div class="div-21">Primary</div>
-                <div class="div-22">Dashboard</div>
+            
+                <div class="div-22">Orders</div>
               </div>
               <div class="div-23">
                 <img
@@ -104,180 +104,102 @@ const categories = ref([
               </div>
             </div>
             <div class="div-26">
-              <div class="div-27">
-                <div class="div-28">
-                  <div class="div-29">Data Refresh</div>
-                  <img
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/5a3e6d8c-b978-4471-a06e-d0220fed30af?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                    class="img-10"
-                  />
-                </div>
-                <div class="div-30">
-                  <div class="div-31">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/b034335a-0d5d-4726-ab9a-fbebd23e80bb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-11"
-                    />
-                    <div class="div-32">November 10, 2023</div>
-                  </div>
-                </div>
-              </div>
+       
               <div class="div-33">
                 <div class="div-34">
                   <div class="column-3">
                     <div class="div-35">
                       <div class="div-36">
                         <div class="div-37">
-                          <div class="div-38">Income</div>
-                          <div class="div-39">
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/ef0448fd-e4f3-4535-b4ee-9f8b7eb9d352?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                              class="img-12"
-                            />
-                            <div class="div-40">10.0%</div>
-                          </div>
+                          <div class="div-38">Total Orders</div>
+                       
                         </div>
-                        <div class="div-41">₱6,680.00</div>
+                        <div class="div-41">17</div>
+                        <div class="div-38">Last 7 days</div>  
                       </div>
                     </div>
                   </div>
                   <div class="column-4">
                     <div class="div-42">
-                      <div class="div-43">
-                        <div class="div-44">
-                          <div class="div-45">Expenses</div>
-                          <div class="div-46">
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/da83834b-f8e2-49da-988b-2ee5fa50aabd?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                              class="img-13"
-                            />
-                            <div class="div-47">3.0%</div>
-                          </div>
+                        <div class="div-36">
+                        <div class="div-37">
+                          <div class="div-38">Total Delivered</div>
+                       
                         </div>
-                        <div class="div-48">₱3,680.00</div>
+                        <div class="div-41">12</div>
+                        <div class="div-38">Last 7 days</div>  
+                        <div class="div-41">₱ 8,710.00</div>
+                        <div class="div-38">Revenue</div> 
                       </div>
                     </div>
                   </div>
-                  <div class="column-5">
-                    <div class="div-49">
-                      <div class="div-50">
-                        <div class="div-51">New Orders</div>
-                        <div class="div-52">
-                          <img
-                            loading="lazy"
-                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/c744d136-0709-4c34-95ff-c4e41ce6d314?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                            class="img-14"
-                          />
-                          <div class="div-53">3.2%</div>
+                  <div class="column-3">
+                    <div class="div-35">
+                      <div class="div-36">
+                        <div class="div-37">
+                          <div class="div-38">Total Returned</div>
+                       
                         </div>
+                        <div class="div-41">5</div>
+                        <div class="div-38">Last 7 days</div>  
+                        <div class="div-41">₱ 2,710.00</div>
+                        <div class="div-38">Revenue</div> 
                       </div>
-                      <div class="div-54">24</div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="div-55">
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e157c284-d07b-41b1-a8cd-72c544aa15ec?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-15"
-                />
-                <div class="div-56">Sales Statistics 2023</div>
-                <div class="div-57"></div>
-                <div class="div-58">
-                  <div class="div-59">
-                    <div class="div-60">80</div>
-                    <div class="div-61">60</div>
-                    <div class="div-62">40</div>
-                    <div class="div-63">20</div>
-                    <div class="div-64">0</div>
-                  </div>
-                  <div class="div-65">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/db58f081-7baf-49c9-9334-c8c17ac24571?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-16"
-                    />
-                    <div class="div-66">
-                      <div class="div-67">JAN</div>
-                      <div class="div-68">FEB</div>
-                      <div class="div-69">MAR</div>
-                      <div class="div-70">APR</div>
-                      <div class="div-71">MAY</div>
-                      <div class="div-72">JUN</div>
-                      <div class="div-73">JUL</div>
-                      <div class="div-74">AUG</div>
-                      <div class="div-75">SEP</div>
-                      <div class="div-76">OCT</div>
-                      <div class="div-77">NOV</div>
-                      <div class="div-78">DEC</div>
+                  <div class="column-4">
+                    <div class="div-42">
+                        <div class="div-36">
+                        <div class="div-37">
+                          <div class="div-38">Pending Orders</div>
+                       
+                        </div>
+                        <div class="div-41">3</div>
+                        <div class="div-38">Ordered</div>  
+                        <div class="div-41">₱ 1,975.00</div>
+                        <div class="div-38">Cost</div> 
+                      </div>
                     </div>
                   </div>
+              
                 </div>
               </div>
+          
               <div class="div-79">
-                <div class="div-80">
-                  <div class="div-81">Top Selling Products</div>
-                  <div class="div-82">
-                    <div class="div-83">Filter date by</div>
-                    <div class="div-84" type="button">This week</div>
-                    <div class="div-85" type="button">This month</div>
-                    <div class="div-86" type="button">This year</div> 
-                  </div>
-                </div>
+           
 
                 <table class="table table-striped"  >
+                    <thead>
+            <tr>
+              <th>Customer Name</th>
+              <th>Order Value</th>
+              <th>Quantity</th>
+              <th>Order ID</th>
+              <th>Expected Delivery</th>
+              <th>Status</th>
+            </tr>
+          </thead>
      
           <tbody class="div-87">
             <tr v-for="category in categories" :key="category.id">
-              <td >  
-                <img v-if="category.id === 1"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/38aa3e8c-e8cc-4488-b37c-643736d94028?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-17"
-                    />
-                    <img v-else-if="category.id === 2"
-                      loading="lazy"
-                      srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-19"
-                    />
-                    <img v-else-if="category.id === 3"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/aebf0707-93d5-470b-bf57-f0233d1247cb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-21"
-                    />
-                    <img v-else-if="category.id === 4"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a595844-2fc2-4e6a-8ace-c57a01fdef51?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-23"
-                    />
-                    <img v-else-if="category.id === 5"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/b07e6af3-5691-4a64-87b0-1ab200d6b97b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-25"
-                    />
-                  
-                  </td>
+         
               <td >{{ category.docType }}</td>
               <td >{{ category.dateReq }}</td>
               <td >{{ category.claim }}</td>
               <td >
-                <div class="div-95">{{ category.sched }}</div></td>
+                {{ category.sched }}</td>
             
-              <td >
-                
-                <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/114f2fa6-8e85-43ee-946b-b84ea5bd7655?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-18"
-                    />
+              <td>
+                {{ category.date }}
+            
               
               
               </td>
+              <td ><span v-if="category.status === 'Confirmed'" class="badge rounded-pill badge-primary">{{ category.status }}</span>
+                <span v-else-if="category.status === 'Returned'" class="badge rounded-pill badge-danger">{{ category.status }}</span>
+                <span v-else-if="category.status === 'Pending'" class="badge rounded-pill badge-warning">{{ category.status }}</span>
+                <span v-else-if="category.status === 'Out of Delivery'" class="badge rounded-pill badge-success">{{ category.status }}</span>
+                </td>
          
             </tr>
           </tbody>
@@ -295,6 +217,9 @@ const categories = ref([
 
 
 <style scoped>
+thead{
+  background-color: #e0ffed;
+}
 .header-image {
   aspect-ratio: 1;
   object-fit: contain;
