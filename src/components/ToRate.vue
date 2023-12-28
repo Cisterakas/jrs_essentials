@@ -197,10 +197,10 @@ import FooterBar from './Footer.vue'
 
   .div-81 {
     width: auto;
-    color: var(--bfb-9-cf, #b0a6bd);
+    color:  #2e2e2e;
     text-transform: capitalize;
     border-radius: 4px;
-    border: 1px solid var(--8498-af, #dfe1e3);
+    border: 1px solid  #dfe1e3;
     background-color: #fff;
     padding: 10px;
     font: 400 20px Poppins, sans-serif;
@@ -224,6 +224,7 @@ import FooterBar from './Footer.vue'
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s;
+  
 }
 .modal-window:target {
     
@@ -233,14 +234,18 @@ import FooterBar from './Footer.vue'
 }
 .modal-window > div {
     
-  width: 500px;
-  height: 500px;
-  position: absolute;
-  top: 50%;
+  width: 901px;
+height: auto;
+position: relative;
+position: absolute;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
-  padding: 2em;
-  background: white;
+background: #ffffff;
+border-radius: 10px;
+padding: 40px 130px 40px 130px;
+display: flex;
+flex-direction: column;
 }
 .modal-window header {
   font-weight: bold;

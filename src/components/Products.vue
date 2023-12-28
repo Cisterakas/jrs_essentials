@@ -561,18 +561,18 @@ import FooterBar from './Footer.vue'
 }
 
 .box:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 116, 58, 0.33);
 }
 
 .box:hover:before {
-  border-color: #224f34;
+  border-color: #06aa2475;
   height: 100%;
   transform: translateX(0);
   transition: .3s transform linear, .3s height linear .3s;
 }
 
 .box:hover:after {
-  border-color: #224f34;
+  border-color: #06aa2475;
   height: 100%;
   transform: translateX(0);
   transition: .3s transform linear, .3s height linear .5s;

@@ -3,11 +3,13 @@
     <nav>
       <div class="div-2">
       <div class="div-3">
+        <router-link to="/" type="button">
         <img
           loading="lazy"
           srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/3d2e8db6-3bc1-4ebe-bdb7-27f924fa0645?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/3d2e8db6-3bc1-4ebe-bdb7-27f924fa0645?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3d2e8db6-3bc1-4ebe-bdb7-27f924fa0645?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/3d2e8db6-3bc1-4ebe-bdb7-27f924fa0645?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/3d2e8db6-3bc1-4ebe-bdb7-27f924fa0645?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/3d2e8db6-3bc1-4ebe-bdb7-27f924fa0645?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/3d2e8db6-3bc1-4ebe-bdb7-27f924fa0645?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/3d2e8db6-3bc1-4ebe-bdb7-27f924fa0645?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
           class="img"
         />
+      </router-link>
         <div class="div-4">
         <a href="/" type="button" class="box">Home</a>
        
