@@ -48,7 +48,7 @@ const categories = ref([
               <div class="div-10">Orders</div>
             
           </router-link>
-          <router-link to="/adminReview" class="div-11" type="button">
+          <router-link to="/adminDashboard" class="div-11" type="button">
             
               <img
                 loading="lazy"
@@ -84,8 +84,8 @@ const categories = ref([
           <div class="div-18">
             <div class="div-19">
               <div class="div-20">
-                <div class="div-21">Primary</div>
-                <div class="div-22">Dashboard</div>
+           
+                <div class="div-22">Reviews</div>
               </div>
               <div class="div-23">
                 <img
@@ -124,166 +124,285 @@ const categories = ref([
                   </div>
                 </div>
               </div>
-              <div class="div-33">
-                <div class="div-34">
-                  <div class="column-3">
-                    <div class="div-35">
-                      <div class="div-36">
-                        <div class="div-37">
-                          <div class="div-38">Income</div>
-                          <div class="div-39">
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/ef0448fd-e4f3-4535-b4ee-9f8b7eb9d352?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                              class="img-12"
-                            />
-                            <div class="div-40">10.0%</div>
-                          </div>
-                        </div>
-                        <div class="div-41">₱6,680.00</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="column-4">
-                    <div class="div-42">
-                      <div class="div-43">
-                        <div class="div-44">
-                          <div class="div-45">Expenses</div>
-                          <div class="div-46">
-                            <img
-                              loading="lazy"
-                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/da83834b-f8e2-49da-988b-2ee5fa50aabd?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                              class="img-13"
-                            />
-                            <div class="div-47">3.0%</div>
-                          </div>
-                        </div>
-                        <div class="div-48">₱3,680.00</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="column-5">
-                    <div class="div-49">
-                      <div class="div-50">
-                        <div class="div-51">New Orders</div>
-                        <div class="div-52">
-                          <img
-                            loading="lazy"
-                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/c744d136-0709-4c34-95ff-c4e41ce6d314?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                            class="img-14"
-                          />
-                          <div class="div-53">3.2%</div>
-                        </div>
-                      </div>
-                      <div class="div-54">24</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="div-55">
+           
+          
+              <div class="div-">
+    <div class="div-2-">
+      <div class="div-3-">
+        <div class="column-">
+          <div class="div-4-">
+            <div class="div-5-">
+              <div class="div-6-">
                 <img
                   loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e157c284-d07b-41b1-a8cd-72c544aa15ec?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                  class="img-15"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/30c8d08c36d85712a49dd4b23ce0cd2c89fa5e383380d50e4078ad09aa75778b?"
+                  class="img-"
                 />
-                <div class="div-56">Sales Statistics 2023</div>
-                <div class="div-57"></div>
-                <div class="div-58">
-                  <div class="div-59">
-                    <div class="div-60">80</div>
-                    <div class="div-61">60</div>
-                    <div class="div-62">40</div>
-                    <div class="div-63">20</div>
-                    <div class="div-64">0</div>
-                  </div>
-                  <div class="div-65">
-                    <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/db58f081-7baf-49c9-9334-c8c17ac24571?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-16"
-                    />
-                    <div class="div-66">
-                      <div class="div-67">JAN</div>
-                      <div class="div-68">FEB</div>
-                      <div class="div-69">MAR</div>
-                      <div class="div-70">APR</div>
-                      <div class="div-71">MAY</div>
-                      <div class="div-72">JUN</div>
-                      <div class="div-73">JUL</div>
-                      <div class="div-74">AUG</div>
-                      <div class="div-75">SEP</div>
-                      <div class="div-76">OCT</div>
-                      <div class="div-77">NOV</div>
-                      <div class="div-78">DEC</div>
-                    </div>
-                  </div>
-                </div>
               </div>
-              <div class="div-79">
-                <div class="div-80">
-                  <div class="div-81">Top Selling Products</div>
-                  <div class="div-82">
-                    <div class="div-83">Filter date by</div>
-                    <div class="div-84" type="button">This week</div>
-                    <div class="div-85" type="button">This month</div>
-                    <div class="div-86" type="button">This year</div> 
-                  </div>
-                </div>
-
-                <table class="table table-striped"  >
-     
-          <tbody class="div-87">
-            <tr v-for="category in categories" :key="category.id">
-              <td >  
-                <img v-if="category.id === 1"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/38aa3e8c-e8cc-4488-b37c-643736d94028?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-17"
-                    />
-                    <img v-else-if="category.id === 2"
-                      loading="lazy"
-                      srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/d078db80-48a2-413f-a9a4-acbaf7d6906f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-19"
-                    />
-                    <img v-else-if="category.id === 3"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/aebf0707-93d5-470b-bf57-f0233d1247cb?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-21"
-                    />
-                    <img v-else-if="category.id === 4"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/1a595844-2fc2-4e6a-8ace-c57a01fdef51?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-23"
-                    />
-                    <img v-else-if="category.id === 5"
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/b07e6af3-5691-4a64-87b0-1ab200d6b97b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-25"
-                    />
-                  
-                  </td>
-              <td >{{ category.docType }}</td>
-              <td >{{ category.dateReq }}</td>
-              <td >{{ category.claim }}</td>
-              <td >
-                <div class="div-95">{{ category.sched }}</div></td>
-            
-              <td >
-                
+              <div class="div-7-">
+                <div class="div-8-">+2.40%</div>
                 <img
-                      loading="lazy"
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/114f2fa6-8e85-43ee-946b-b84ea5bd7655?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                      class="img-18"
-                    />
-              
-              
-              </td>
-         
-            </tr>
-          </tbody>
-        </table> 
-                
+                  loading="lazy"
+                  srcSet="..."
+                  class="img-2-"
+                />
               </div>
+            </div>
+            <div class="div-9-">4.5</div>
+            <div class="div-10-">Review score</div>
+          </div>
+        </div>
+        <div class="column-2-">
+          <div class="div-11-">
+            <div class="div-12-">
+              <div class="div-13-">
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/7aa5c3d2ac10fa46672a165de762a7c46db0369d01b0d03c335a6b5dd608e836?"
+                  class="img-3-"
+                />
+              </div>
+              <div class="div-14-">
+                <div class="div-15-">+8.40%</div>
+                <img
+                  loading="lazy"
+                  srcSet="..."
+                  class="img-4-"
+                />
+              </div>
+            </div>
+            <div class="div-16-">1,234</div>
+            <div class="div-17-">Total Customers</div>
+          </div>
+        </div>
+        <div class="column-3-">
+          <div class="div-18-">
+            <div class="div-19-">
+              <div class="div-20-"><div class="div-21-">+</div></div>
+              <div class="div-22-">
+                <div class="div-23-">+1.40%</div>
+                <img
+                  loading="lazy"
+                  srcSet="..."
+                  class="img-5-"
+                />
+              </div>
+            </div>
+            <div class="div-24-">73</div>
+            <div class="div-25-">Total New Customers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="div-26-">
+      <div class="div-27-">All</div>
+      <div class="div-28-" type="button">5 stars</div>
+      <div class="div-29-" type="button">4 stars</div>
+      <div class="div-30-" type="button">3 stars</div>
+      <div class="div-31-" type="button">2 stars</div>
+      <div class="div-32-" type="button">1 star</div>
+    </div>
+    <div class="div-33-">
+      <div class="div-34-">
+        <div class="div-35-">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/501190cabfae108feb3579ccd3c5d8e4095f1986a15c9df58865c041a57ec0fb?"
+            class="img-6-"
+          />
+          <div class="div-36-">
+            <div class="div-37-">
+              <div class="div-38-">Cathy K.</div>
+              <div class="div-39-">Verified Reviewer</div>
+            </div>
+            <div class="div-40-">
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6a31de74956ae9571b4739975ded1388cddead1d887ec3aa1e5dcfb40a27ad06?"
+                class="img-7-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6a31de74956ae9571b4739975ded1388cddead1d887ec3aa1e5dcfb40a27ad06?"
+                class="img-8-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6a31de74956ae9571b4739975ded1388cddead1d887ec3aa1e5dcfb40a27ad06?"
+                class="img-9-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6a31de74956ae9571b4739975ded1388cddead1d887ec3aa1e5dcfb40a27ad06?"
+                class="img-10-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/4770f8ac63fc8435ce9edae8c5811fbbb9b2993c3fffef68fe6e84a88c92f6c0?"
+                class="img-11-"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="div-41-">26/02/23</div>
+      </div>
+      <div class="div-42-">VERY MOISTURIZING</div>
+      <div class="div-43-">
+        I didn’t know how effective the gel cream would be since I was skeptical
+        of the texture, but my sensitive skin loved it and I didn’t even break
+        out when I first started using it. Love it!
+      </div>
+      <div class="div-44-"></div>
+      <img
+        loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/7498285741881b88e5c9d06aad7c510e1be876c61ae72094073b569d7092d8d2?"
+        class="img-12-"
+      />
+      <div class="div-45-">
+        <div class="div-46-">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/e870b5875a05d4411faf5a9b714713312c232d232900adddbad044f9a9862fbc?"
+            class="img-13-"
+          />
+          <div class="div-47-">
+            <div class="div-48-">Aileen R.</div>
+            <div class="div-49-">
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6e6ccfce767d409bbce8b91bb0eee793e984f171d6172cf54f539f3ca8d75d1d?"
+                class="img-14-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6e6ccfce767d409bbce8b91bb0eee793e984f171d6172cf54f539f3ca8d75d1d?"
+                class="img-15-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6e6ccfce767d409bbce8b91bb0eee793e984f171d6172cf54f539f3ca8d75d1d?"
+                class="img-16-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6e6ccfce767d409bbce8b91bb0eee793e984f171d6172cf54f539f3ca8d75d1d?"
+                class="img-17-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6e6ccfce767d409bbce8b91bb0eee793e984f171d6172cf54f539f3ca8d75d1d?"
+                class="img-18-"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="div-50-">12/02/23</div>
+      </div>
+      <div class="div-51-">REALLY LIGHT AND NOT STICKY.</div>
+      <div class="div-52-">
+        Really light and not sticky. My skin soaked it right up! I mix it with
+        the green tea products and it helps balance my combo skin.
+      </div>
+      <div class="div-53-">
+        <div class="div-54-"></div>
+        <div class="div-55-"></div>
+      </div>
+      <img
+        loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/7498285741881b88e5c9d06aad7c510e1be876c61ae72094073b569d7092d8d2?"
+        class="img-19-"
+      />
+      <div class="div-56-">
+        <div class="div-57-">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/e870b5875a05d4411faf5a9b714713312c232d232900adddbad044f9a9862fbc?"
+            class="img-20-"
+          />
+          <div class="div-58-">
+            <div class="div-59-">
+              <div class="div-60-">Inna C.</div>
+              <div class="div-61-">Verified Reviewer</div>
+            </div>
+            <div class="div-62-">
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/383224a9c1464a55579c329aa482461432cba72f974d14e8c9b07f0a13620458?"
+                class="img-21-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/383224a9c1464a55579c329aa482461432cba72f974d14e8c9b07f0a13620458?"
+                class="img-22-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/383224a9c1464a55579c329aa482461432cba72f974d14e8c9b07f0a13620458?"
+                class="img-23-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/383224a9c1464a55579c329aa482461432cba72f974d14e8c9b07f0a13620458?"
+                class="img-24-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/383224a9c1464a55579c329aa482461432cba72f974d14e8c9b07f0a13620458?"
+                class="img-25-"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="div-63-">02/02/23</div>
+      </div>
+      <div class="div-64-">Scent-sational Beauty Bliss!</div>
+      <div class="div-65-">
+        JRS has won me over with its captivating fragrance. The soap not only
+        cleanses and nourishes the skin but also provides a sensorial experience
+        like no other. The scent is long-lasting, and I find myself catching
+        whiffs of it throughout the day.
+      </div>
+      <img
+        loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/7498285741881b88e5c9d06aad7c510e1be876c61ae72094073b569d7092d8d2?"
+        class="img-26-"
+      />
+      <div class="div-66-">
+        <div class="div-67-">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/e870b5875a05d4411faf5a9b714713312c232d232900adddbad044f9a9862fbc?"
+            class="img-27-"
+          />
+          <div class="div-68-">
+            <div class="div-69-">
+              <div class="div-70-">Rhea B.</div>
+              <div class="div-71-">Verified Reviewer</div>
+            </div>
+            <div class="div-72-">
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/383224a9c1464a55579c329aa482461432cba72f974d14e8c9b07f0a13620458?"
+                class="img-28-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/383224a9c1464a55579c329aa482461432cba72f974d14e8c9b07f0a13620458?"
+                class="img-29-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/383224a9c1464a55579c329aa482461432cba72f974d14e8c9b07f0a13620458?"
+                class="img-30-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/383224a9c1464a55579c329aa482461432cba72f974d14e8c9b07f0a13620458?"
+                class="img-31-"
+              /><img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/383224a9c1464a55579c329aa482461432cba72f974d14e8c9b07f0a13620458?"
+                class="img-32-"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="div-73-">02/02/23</div>
+      </div>
+      <div class="div-74-">Radiant Glow in Every Bar!</div>
+      <div class="div-75-">
+        Having sensitive skin, I've always been cautious about the products I
+        use. JRS has been a game-changer for me. The hypoallergenic formula is
+        incredibly gentle and soothing, leaving my skin feeling clean without
+        any irritation.
+      </div>
+    </div>
+  </div>
             </div>
           </div>
         </div>
@@ -295,6 +414,1113 @@ const categories = ref([
 
 
 <style scoped>
+
+.div- {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.div-2- {
+  border-radius: 20px;
+  width: 1033px;
+  max-width: 100%;
+}
+@media (max-width: 991px) {
+  .div-2- {
+    padding-right: 20px;
+  }
+}
+.div-3- {
+  gap: 20px;
+  display: flex;
+}
+@media (max-width: 991px) {
+  .div-3- {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0px;
+  }
+}
+.column- {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 33%;
+  margin-left: 0px;
+}
+@media (max-width: 991px) {
+  .column- {
+    width: 100%;
+  }
+}
+.div-4- {
+  align-items: start;
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 16px 80px 27px 16px;
+}
+@media (max-width: 991px) {
+  .div-4- {
+    margin-top: 24px;
+    padding-right: 20px;
+  }
+}
+.div-5- {
+  justify-content: center;
+  display: flex;
+  gap: 12px;
+}
+.div-6- {
+  align-items: center;
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  aspect-ratio: 0.8181818181818182;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7px 8px 7px 0;
+}
+.img- {
+  aspect-ratio: 0.93;
+  object-fit: contain;
+  object-position: center;
+  width: 28px;
+  fill: #fedf3f;
+  overflow: hidden;
+}
+.div-7- {
+  justify-content: center;
+  align-self: center;
+  display: flex;
+  gap: 6px;
+  margin: auto 0;
+}
+.div-8- {
+  color: #50d1aa;
+  flex-grow: 1;
+  white-space: nowrap;
+  font: 500 21px/140% Barlow, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-8- {
+    white-space: initial;
+  }
+}
+.img-2- {
+  aspect-ratio: 0.5;
+  object-fit: contain;
+  object-position: center;
+  width: 9px;
+  align-items: flex-start;
+  overflow: hidden;
+  align-self: center;
+  max-width: 100%;
+  margin: auto 0;
+}
+.div-9- {
+  color: #1e293b;
+  margin-top: 8px;
+  font: 600 37px/140% Barlow, sans-serif;
+}
+.div-10- {
+  color: var(--Text-Light, #abbbc2);
+  margin-top: 8px;
+  white-space: nowrap;
+  font: 500 23px/130% Barlow, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-10- {
+    white-space: initial;
+  }
+}
+.column-2- {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 33%;
+  margin-left: 20px;
+}
+@media (max-width: 991px) {
+  .column-2- {
+    width: 100%;
+  }
+}
+.div-11- {
+  align-items: start;
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 16px 80px 27px 16px;
+}
+@media (max-width: 991px) {
+  .div-11- {
+    margin-top: 24px;
+    padding-right: 20px;
+  }
+}
+.div-12- {
+  justify-content: center;
+  display: flex;
+  gap: 12px;
+}
+.div-13- {
+  align-items: center;
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  aspect-ratio: 1.0227272727272727;
+  padding-right: 16px;
+  flex-direction: column;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+}
+.img-3- {
+  aspect-ratio: 0.97;
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.div-14- {
+  justify-content: center;
+  align-self: center;
+  display: flex;
+  gap: 6px;
+  margin: auto 0;
+  padding: 0 2px;
+}
+.div-15- {
+  color: var(--Accents-Green, #50d1aa);
+  flex-grow: 1;
+  white-space: nowrap;
+  font: 500 21px/140% Barlow, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-15- {
+    white-space: initial;
+  }
+}
+.img-4- {
+  aspect-ratio: 0.56;
+  object-fit: contain;
+  object-position: center;
+  width: 10px;
+  align-items: flex-start;
+  overflow: hidden;
+  align-self: center;
+  max-width: 100%;
+  margin: auto 0;
+}
+.div-16- {
+  color: #1e293b;
+  margin-top: 8px;
+  font: 600 37px/140% Barlow, sans-serif;
+}
+.div-17- {
+  color: var(--Text-Light, #abbbc2);
+  margin-top: 8px;
+  white-space: nowrap;
+  font: 500 23px/130% Barlow, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-17- {
+    white-space: initial;
+  }
+}
+.column-3- {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 33%;
+  margin-left: 20px;
+}
+@media (max-width: 991px) {
+  .column-3- {
+    width: 100%;
+  }
+}
+.div-18- {
+  align-items: start;
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 16px 80px 33px 16px;
+}
+@media (max-width: 991px) {
+  .div-18- {
+    margin-top: 24px;
+    padding-right: 20px;
+  }
+}
+.div-19- {
+  justify-content: center;
+  display: flex;
+  gap: 12px;
+}
+.div-20- {
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  aspect-ratio: 1.394736842105263;
+  padding-top: 9px;
+  flex-direction: column;
+}
+.div-21- {
+  justify-content: center;
+  color: #55ac78;
+  text-transform: capitalize;
+  white-space: nowrap;
+  stroke-width: 1.8px;
+  border-radius: 50%;
+  aspect-ratio: 1.8275862068965518;
+  padding: 8px;
+  font: 400 29px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-21- {
+    white-space: initial;
+  }
+}
+.div-22- {
+  justify-content: center;
+  align-self: center;
+  display: flex;
+  padding-right: 7px;
+  gap: 6px;
+  margin: auto 0;
+}
+.div-23- {
+  color: var(--Accents-Green, #50d1aa);
+  font: 500 21px/140% Barlow, sans-serif;
+}
+.img-5- {
+  aspect-ratio: 0.44;
+  object-fit: contain;
+  object-position: center;
+  width: 8px;
+  align-items: flex-start;
+  overflow: hidden;
+  align-self: center;
+  max-width: 100%;
+  margin: auto 0;
+}
+.div-24- {
+  color: #1e293b;
+  margin-top: 8px;
+  font: 600 37px/140% Barlow, sans-serif;
+}
+.div-25- {
+  color: var(--Text-Light, #abbbc2);
+  margin-top: 8px;
+  white-space: nowrap;
+  font: 500 23px/130% Barlow, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-25- {
+    white-space: initial;
+  }
+}
+.div-26- {
+  border-radius: 20px;
+  align-self: stretch;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 89px 23px 0;
+}
+@media (max-width: 991px) {
+  .div-26- {
+    max-width: 100%;
+    flex-wrap: wrap;
+    margin: 40px 10px 0 0;
+  }
+}
+.div-27- {
+  color: #fff;
+  text-transform: capitalize;
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: #328b56;
+  flex-grow: 1;
+  padding: 9px 60px;
+  font: 500 20px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-27- {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+.div-28- {
+  color: #383838;
+  text-transform: capitalize;
+  white-space: nowrap;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid #a6a0a0;
+  background-color: #fff;
+  flex-grow: 1;
+  padding: 9px 45px;
+  font: 500 20px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-28- {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+.div-28-:hover{
+  color: #fff;
+  background-color: #328b56;
+}
+
+
+.div-29-:hover{
+  color: #fff;
+  background-color: #328b56;
+}
+
+
+.div-30-:hover{
+  color: #fff;
+  background-color: #328b56;
+}
+
+
+.div-31-:hover{
+  color: #fff;
+  background-color: #328b56;
+}
+
+
+.div-32-:hover{
+  color: #fff;
+  background-color: #328b56;
+}
+.div-29- {
+  color: var(--black, #383838);
+  text-transform: capitalize;
+  white-space: nowrap;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid #a6a0a0;
+  background-color: #fff;
+  flex-grow: 1;
+  padding: 9px 45px;
+  font: 500 20px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-29- {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+.div-30- {
+  color: var(--black, #383838);
+  text-transform: capitalize;
+  white-space: nowrap;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid #a6a0a0;
+  background-color: #fff;
+  flex-grow: 1;
+  padding: 9px 46px;
+  font: 500 20px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-30- {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+.div-31- {
+  color: var(--black, #383838);
+  text-transform: capitalize;
+  white-space: nowrap;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid #a6a0a0;
+  background-color: #fff;
+  flex-grow: 1;
+  padding: 9px 46px;
+  font: 500 20px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-31- {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+.div-32- {
+  color: var(--black, #383838);
+  text-transform: capitalize;
+  white-space: nowrap;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid #a6a0a0;
+  background-color: #fff;
+  flex-grow: 1;
+  padding: 9px 54px;
+  font: 500 20px Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-32- {
+    white-space: initial;
+    padding: 0 20px;
+  }
+}
+.div-33- {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  margin-top: 75px;
+  width: 100%;
+  flex-direction: column;
+  padding: 0 66px 34px 50px;
+}
+@media (max-width: 991px) {
+  .div-33- {
+    max-width: 100%;
+    margin-top: 40px;
+    padding: 0 20px;
+  }
+}
+.div-34- {
+  align-self: stretch;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
+}
+@media (max-width: 991px) {
+  .div-34- {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+.div-35- {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 15px;
+}
+.img-6- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 40px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.div-36- {
+  align-self: stretch;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0%;
+  flex-direction: column;
+}
+.div-37- {
+  display: flex;
+  justify-content: space-between;
+  gap: 9px;
+}
+.div-38- {
+  color: var(--black, #383838);
+  flex-grow: 1;
+  white-space: nowrap;
+  font: 500 14px/143% Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-38- {
+    white-space: initial;
+  }
+}
+.div-39- {
+  color: var(--bfb-9-cf, #b0a6bd);
+  flex-grow: 1;
+  white-space: nowrap;
+  font: 400 14px/143% Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-39- {
+    white-space: initial;
+  }
+}
+.div-40- {
+  display: flex;
+  margin-top: 9px;
+  padding-right: 48px;
+  gap: 6px;
+}
+@media (max-width: 991px) {
+  .div-40- {
+    padding-right: 20px;
+  }
+}
+.img-7- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-8- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-9- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-10- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-11- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.div-41- {
+  color: var(--bfb-9-cf, #b0a6bd);
+  align-self: start;
+  font: 400 14px/143% Poppins, sans-serif;
+}
+.div-42- {
+  color: var(--black, #383838);
+  align-self: start;
+  margin: 21px 0 0 55px;
+  font: 500 16px/125% Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-42- {
+    max-width: 100%;
+  }
+}
+.div-43- {
+  align-self: start;
+  color: var(--697586, #697586);
+  width: 733px;
+  max-width: 100%;
+  margin: 12px 0 0 55px;
+  font: 400 14px/22px Montserrat, sans-serif;
+}
+.div-44-{
+  background-color: #dfe1e3;
+  align-self: start;
+  display: flex;
+  width: 101px;
+  height: 101px;
+  flex-direction: column;
+  margin: 12px 0 0 55px;
+}
+@media (max-width: 991px) {
+  .div-44- {
+    margin-left: 10px;
+  }
+}
+.img-12- {
+  aspect-ratio: 92.45;
+  object-fit: contain;
+  object-position: center;
+  width: 1017px;
+  fill: var(--8498-af, #dfe1e3);
+  overflow: hidden;
+  align-self: center;
+  margin-top: 40px;
+}
+@media (max-width: 991px) {
+  .img-12- {
+    max-width: 100%;
+  }
+}
+.div-45- {
+  align-self: stretch;
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
+}
+@media (max-width: 991px) {
+  .div-45- {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+.div-46- {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 17px;
+}
+.img-13- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 40px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.div-47- {
+  align-self: stretch;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0%;
+  flex-direction: column;
+}
+.div-48- {
+  color: var(--black, #383838);
+  font: 500 14px/143% Poppins, sans-serif;
+}
+.div-49- {
+  display: flex;
+  margin-top: 9px;
+  padding-right: 8px;
+  gap: 6px;
+}
+.img-14- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-15- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-16- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-17- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-18- {
+  aspect-ratio: 0.11;
+  object-fit: contain;
+  object-position: center;
+  width: 2px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.div-50- {
+  color: var(--bfb-9-cf, #b0a6bd);
+  align-self: start;
+  font: 400 14px/143% Poppins, sans-serif;
+}
+.div-51- {
+  color: var(--black, #383838);
+  align-self: start;
+  margin: 21px 0 0 59px;
+  font: 500 16px/125% Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-51- {
+    max-width: 100%;
+  }
+}
+.div-52- {
+  align-self: start;
+  color: var(--697586, #697586);
+  width: 732px;
+  max-width: 100%;
+  margin: 12px 0 0 59px;
+  font: 400 14px/22px Montserrat, sans-serif;
+}
+.div-53- {
+  align-self: start;
+  display: flex;
+  width: 212px;
+  max-width: 100%;
+  gap: 10px;
+  margin: 12px 0 0 59px;
+}
+@media (max-width: 991px) {
+  .div-53- {
+    margin-left: 10px;
+  }
+}
+.div-54- {
+  background-color: #dfe1e3;
+  display: flex;
+  height: 101px;
+  flex-direction: column;
+  flex: 1;
+}
+.div-55- {
+  background-color: #dfe1e3;
+  display: flex;
+  height: 101px;
+  flex-direction: column;
+  flex: 1;
+}
+.img-19- {
+  aspect-ratio: 92.45;
+  object-fit: contain;
+  object-position: center;
+  width: 1017px;
+  fill: var(--8498-af, #dfe1e3);
+  overflow: hidden;
+  align-self: center;
+  margin-top: 40px;
+}
+@media (max-width: 991px) {
+  .img-19- {
+    max-width: 100%;
+  }
+}
+.div-56- {
+  align-self: stretch;
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
+}
+@media (max-width: 991px) {
+  .div-56- {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+.div-57- {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.img-20- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 40px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.div-58- {
+  align-self: stretch;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0%;
+  flex-direction: column;
+}
+.div-59- {
+  display: flex;
+  justify-content: space-between;
+  gap: 9px;
+}
+.div-60- {
+  color: var(--black, #383838);
+  flex-grow: 1;
+  white-space: nowrap;
+  font: 500 14px/143% Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-60- {
+    white-space: initial;
+  }
+}
+.div-61- {
+  color: var(--bfb-9-cf, #b0a6bd);
+  flex-grow: 1;
+  white-space: nowrap;
+  font: 400 14px/143% Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-61- {
+    white-space: initial;
+  }
+}
+.div-62- {
+  display: flex;
+  margin-top: 9px;
+  padding-right: 57px;
+  gap: 6px;
+}
+@media (max-width: 991px) {
+  .div-62- {
+    padding-right: 20px;
+  }
+}
+.img-21- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-22- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-23- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-24- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-25- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.div-63- {
+  color: var(--bfb-9-cf, #b0a6bd);
+  align-self: start;
+  font: 400 14px/143% Poppins, sans-serif;
+}
+.div-64- {
+  color: var(--black, #383838);
+  align-self: start;
+  margin: 21px 0 0 68px;
+  font: 500 16px/125% Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-64- {
+    max-width: 100%;
+  }
+}
+.div-65- {
+  align-self: start;
+  color: var(--697586, #697586);
+  width: 715px;
+  max-width: 100%;
+  margin: 12px 0 0 68px;
+  font: 400 14px/22px Montserrat, sans-serif;
+}
+.img-26- {
+  aspect-ratio: 92.45;
+  object-fit: contain;
+  object-position: center;
+  width: 1017px;
+  fill: var(--8498-af, #dfe1e3);
+  overflow: hidden;
+  align-self: center;
+  margin-top: 40px;
+}
+@media (max-width: 991px) {
+  .img-26- {
+    max-width: 100%;
+  }
+}
+.div-66- {
+  align-self: stretch;
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
+}
+@media (max-width: 991px) {
+  .div-66- {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+}
+.div-67- {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.img-27- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 40px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.div-68- {
+  align-self: stretch;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0%;
+  flex-direction: column;
+}
+.div-69- {
+  display: flex;
+  justify-content: space-between;
+  gap: 9px;
+}
+.div-70- {
+  color: var(--black, #383838);
+  flex-grow: 1;
+  white-space: nowrap;
+  font: 500 14px/143% Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-70- {
+    white-space: initial;
+  }
+}
+.div-71- {
+  color: var(--bfb-9-cf, #b0a6bd);
+  flex-grow: 1;
+  white-space: nowrap;
+  font: 400 14px/143% Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-71- {
+    white-space: initial;
+  }
+}
+.div-72- {
+  display: flex;
+  margin-top: 9px;
+  padding-right: 57px;
+  gap: 6px;
+}
+@media (max-width: 991px) {
+  .div-72- {
+    padding-right: 20px;
+  }
+}
+.img-28- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-29- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-30- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-31- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.img-32- {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 18px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.div-73- {
+  color: var(--bfb-9-cf, #b0a6bd);
+  align-self: start;
+  font: 400 14px/143% Poppins, sans-serif;
+}
+.div-74- {
+  color: var(--black, #383838);
+  align-self: start;
+  margin: 21px 0 0 68px;
+  font: 500 16px/125% Poppins, sans-serif;
+}
+@media (max-width: 991px) {
+  .div-74- {
+    max-width: 100%;
+  }
+}
+.div-75- {
+  align-self: start;
+  color: var(--697586, #697586);
+  width: 715px;
+  max-width: 100%;
+  margin: 12px 0 0 68px;
+  font: 400 14px/22px Montserrat, sans-serif;
+}
+
+
+
+
+
+
+
+
+
+/* ------------------------------------ */
+
+
+
 .header-image {
   aspect-ratio: 1;
   object-fit: contain;

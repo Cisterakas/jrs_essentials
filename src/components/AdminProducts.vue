@@ -61,7 +61,7 @@ const categories = ref([
               <div class="div-10">Orders</div>
             
           </router-link>
-          <router-link to="/adminDashboard" class="div-11" type="button">
+          <router-link to="/adminReview" class="div-11" type="button">
             
               <img
                 loading="lazy"

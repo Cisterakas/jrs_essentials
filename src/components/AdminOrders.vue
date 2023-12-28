@@ -38,7 +38,7 @@ const categories = ref([
               />
               <div class="div-8">Products</div>
             </router-link>
-            <router-link to="/adminDashboard" class="div-9" type="button">
+            <router-link to="/adminOrder" class="div-9" type="button">
             
               <img
                 loading="lazy"
@@ -48,7 +48,7 @@ const categories = ref([
               <div class="div-10">Orders</div>
             
           </router-link>
-          <router-link to="/adminDashboard" class="div-11" type="button">
+          <router-link to="/adminReview" class="div-11" type="button">
             
               <img
                 loading="lazy"

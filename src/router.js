@@ -19,6 +19,7 @@ import ToRate from './components/ToRate.vue';
 import AdminDasboard from './components/AdminDashboard.vue';
 import AdminProducts from './components/AdminProducts.vue';
 import AdminOrders from './components/AdminOrders.vue';
+import AdminReview from './components/AdminReview.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -41,6 +42,7 @@ const routes = [
     { path: '/adminDashboard', component: AdminDasboard},  
     { path: '/adminProducts', component: AdminProducts},  
     { path: '/adminOrder', component: AdminOrders}, 
+    { path: '/adminReview', component: AdminReview}, 
 ];
 
 const router = createRouter({
