@@ -22,6 +22,31 @@ const categories = ref([
     { id: 19, docNum: 4, docType: "Earthberry Strawberry Body Scrubs", dateReq: "17", sched: "₱130.00" }, 
     { id: 20, docNum: 4, docType: "Matcha Green Tea Body Scrub", dateReq: "17", sched: "₱210.00" }, 
   ]);
+  const deleteCategory = (category) => {
+  const index = categories.value.indexOf(category);
+  if (index !== -1) {
+    categories.value.splice(index, 1);
+  }
+};
+const toggleEdit = (category) => {
+  category.editing = !category.editing;
+};
+
+const saveEdit = (category) => {
+  // Save edit logic, for example, update the backend or emit an event
+  toggleEdit(category);
+};
+
+const addRow = () => {
+  const newCategory = {
+    id: categories.value.length + 1,
+    docType: 'New Product',
+    dateReq: 'New Stock',
+    sched: 'New Price',
+    editing: false,
+  };
+  categories.value.push(newCategory);
+};
 </script> 
 
 <template>
@@ -117,7 +142,7 @@ const categories = ref([
             </div>
             <div class="div-26">
               <div class="div-27">
-                <div class="div-30">
+                <div @click="addRow" type="button" class="div-30">
                   <div class="div-31">
                   
                     <div class="div-32">Add Product</div>
@@ -140,17 +165,44 @@ const categories = ref([
           <tbody class="div-87">
             <tr v-for="category in categories" :key="category.id">
               <td >  
-                {{ category.docType }}
+                <span v-if="!category.editing">{{ category.docType }}</span>
+          <input
+            v-if="category.editing"
+            v-model="category.docType"
+            @keyup.enter="saveEdit(category)"
+          />
                   
                   </td>
-              <td >{{ category.id }}</td>
-              <td >{{ category.dateReq }}</td>
               <td >
-                {{ category.sched }}</td>
+                <span v-if="!category.editing">{{ category.id }}</span>
+          <input
+            v-if="category.editing"
+            v-model="category.id"
+            @keyup.enter="saveEdit(category)"
+          />
+              </td>
+              <td >
+                <span v-if="!category.editing">{{ category.dateReq }}</span>
+          <input
+            v-if="category.editing"
+            v-model="category.dateReq"
+            @keyup.enter="saveEdit(category)"
+          />
+              </td>
+              <td >
+                <span v-if="!category.editing">{{ category.sched }}</span>
+          <input
+            v-if="category.editing"
+            v-model="category.sched"
+            @keyup.enter="saveEdit(category)"
+          /></td>
             
               <td >
-                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/38da04359e32c5d8dcdfba3d9116bfcde5c468f31ea27c89365cf510c2296e4f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&" class="header-image" />
-      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/fcc9969f362bc56325fa68903a38d3ee745399a77a034d984891cb0c57182514?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&" class="header-image-2" />
+                <div @click="deleteCategory(category)" id="deleteBtn" type="button">                
+                  <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/38da04359e32c5d8dcdfba3d9116bfcde5c468f31ea27c89365cf510c2296e4f?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&" class="header-image" />
+</div>
+<div @click="toggleEdit(category)" id="editBtn" type="button">      <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/fcc9969f362bc56325fa68903a38d3ee745399a77a034d984891cb0c57182514?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&" class="header-image-2" />
+</div>
               </td>
          
             </tr>
