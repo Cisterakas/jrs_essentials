@@ -1,8 +1,34 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import NavigationBar from "./NavigationBar.vue";
 import FooterBar from "./Footer.vue";
+import { store } from "../store";
+
+const router = useRouter();
+
+// Settle active redirects if checkout is empty
+onMounted(() => {
+  if (store.cartItems.length === 0) {
+    router.push('/products');
+  }
+});
+
 const imageUrl = ref("");
+const showSuccessModal = ref(false);
+const generatedOrderId = ref("");
+
+const form = ref({
+  email: "",
+  firstName: "",
+  lastName: "",
+  address: "",
+  city: "",
+  postalCode: "",
+  phone: "",
+  country: "Philippines",
+  paymentMethod: "GCASH"
+});
 
 const handleImageUpload = (event) => {
   const file = event.target.files[0];
@@ -14,1008 +40,467 @@ const handleImageUpload = (event) => {
     reader.readAsDataURL(file);
   }
 };
+
+const handlePlaceOrder = () => {
+  // Simple validations
+  if (!form.value.email || !form.value.firstName || !form.value.lastName || !form.value.address || !form.value.phone) {
+    alert("Please fill in all required fields (Email, First Name, Last Name, Address, and Phone Number) before placing your order.");
+    return;
+  }
+  
+  // Place the order via store
+  const orderId = store.placeOrder(form.value);
+  generatedOrderId.value = orderId;
+  showSuccessModal.value = true;
+};
+
+const closeModal = () => {
+  showSuccessModal.value = false;
+  router.push('/toPay'); // Route to pay/order history tracking page
+};
 </script>
 
 <template>
-  <NavigationBar />
-  <div class="div">
-    <div class="div-2">
-      <div class="div-3">
-        <div class="div-4">
-          <div class="column">
-            <div class="div-5">
-              <div class="div-6">
-                <div class="div-7">Contact information</div>
-                <input type="text" class="div-8" placeholder="Email" />
+  <div class="page-wrapper">
+    <NavigationBar />
+    
+    <main class="checkout-container">
+      <div class="container">
+        <div class="row g-4">
+          <!-- Left Billing details -->
+          <div class="col-12 col-lg-7">
+            <div class="checkout-card p-4 p-md-5">
+              
+              <h3 class="section-heading mb-4">Contact Information</h3>
+              <input 
+                type="email" 
+                class="form-control mb-3" 
+                placeholder="Email Address" 
+                v-model="form.email" 
+                required
+              />
 
-                <div class="div-9">
-                  <input
-                    type="checkbox"
-                    class="div-10"
-                    id="email"
-                    value="email"
+              <div class="form-check mb-4">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="email-optin"
+                />
+                <label for="email-optin" class="form-check-label text-muted">Email me with exclusive news and product offers</label>
+              </div>
+              
+              <h3 class="section-heading mt-5 mb-4">Shipping Address</h3>
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6">
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="First Name" 
+                    v-model="form.firstName" 
+                    required 
                   />
-                  <div class="div-10">Email me with news and offers</div>
                 </div>
-                <div class="div-11">Shipping adress</div>
-                <div class="div-12">
-                  <input type="text" class="div-13" placeholder="First Name" />
-                  <input type="text" class="div-14" placeholder="Last Name" />
+                <div class="col-12 col-md-6">
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Last Name" 
+                    v-model="form.lastName" 
+                    required 
+                  />
                 </div>
-                <input type="text" class="div-15" placeholder="Address" />
+              </div>
+              
+              <input 
+                type="text" 
+                class="form-control mb-3" 
+                placeholder="Street Address, Barangay, Unit #" 
+                v-model="form.address" 
+                required 
+              />
 
-                <div class="div-16">
-                  <input type="text" class="div-17" placeholder="City" />
-                  <input type="text" class="div-18" placeholder="Postal code" />
+              <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6">
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="City / Municipality" 
+                    v-model="form.city" 
+                    required 
+                  />
                 </div>
-                <input type="text" class="div-19" placeholder="Phone" />
+                <div class="col-12 col-md-6">
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Postal code" 
+                    v-model="form.postalCode" 
+                  />
+                </div>
+              </div>
+              
+              <input 
+                type="tel" 
+                class="form-control mb-3" 
+                placeholder="Phone Number" 
+                v-model="form.phone" 
+                required 
+              />
 
-                <input type="text" class="div-19" placeholder="Country" />
-                <div class="div-22">
-                  All transactions are secure and encrypted.<br />
-                </div>
-                <div class="div-23">
-                  <div class="div-24">
-                    <input
-                      type="radio"
-                      class="div-25"
-                      id="gcash"
-                      name="payment"
-                      value="GCASH"
-                    />
-                    <div class="div-25">GCASH</div>
-                  </div>
-                  <div class="div-26">
-                    Name: Kimberly Ley Estabas<br />
-                    Phone Number: 09772700065<br />
-                    Please screenshot this invoice and settle your payment
-                    within 2 DAYS after placing your order. Kindly send your
-                    proof of payment in our FACEBOOK account @jrsessential
-                    together with your order number.<br />
-                    (GCASH to GCASH transaction only)
-                  </div>
-                  <section class="hero is-light">
-                    <div class="hero-body">
-                      <div class="container has-text-centered">
-                        <p class="control uploader">
-                          <label
-                            for="imageInput"
-                            class="button is-dark is-fullwidth is-medium"
-                          >
-                          </label>
-                          <input
-                            ref="imageInput"
-                            id="imageInput"
-                            type="file"
-                            accept="image/*"
-                            @change="handleImageUpload"
-                            class="form-control"
-                          />
-                        </p>
-                      </div>
-                      <!-- Image preview -->
-                      <div class="field">
-                        <img
-                          id="thumbnail"
-                          :src="imageUrl"
-                          alt="image-preview-here"
-                        />
-                      </div>
-                    </div>
-                  </section>
-                </div>
-                <div class="div-27">
-                  <div class="div-28">
-                    <input
-                      type="radio"
-                      class="div-29"
-                      id="unionbank"
-                      name="payment"
-                      value="UNIONBANK"
-                    />
-                    <div class="div-29">Unionbank</div>
-                  </div>
-                  <div class="div-30">
-                    Name: Kimberly Ley Mejia Estabas<br />
-                    Account number: 9839182918<br />
-                    Please screenshot this invoice and settle your payment
-                    within 2 DAYS after placing your order. Kindly send your
-                    proof of payment in our INSTAGRAM account @jrsessential
-                    together with your order number.
-                  </div>
-                </div>
-                <div class="div-27">
-                  <div class="div-28">
-                    <input
-                      type="radio"
-                      class="div-29"
-                      id="landbank"
-                      name="payment"
-                      value="LANDBANK"
-                    />
-                    <div class="div-29">Landbank</div>
-                  </div>
-                  <div class="div-30">
-                    Name: Kimberly Ley Mejia Estabas<br />
-                    Account number: 9932567623<br />
-                    Please screenshot this invoice and settle your payment
-                    within 2 DAYS after placing your order. Kindly send your
-                    proof of payment in our INSTAGRAM account @jrsessential
-                    together with your order number.
-                  </div>
-                </div>
-                <div class="div-31">
+              <input 
+                type="text" 
+                class="form-control mb-5 text-muted bg-light" 
+                placeholder="Country" 
+                v-model="form.country" 
+                disabled
+              />
+              
+              <h3 class="section-heading mb-3">Payment Method</h3>
+              <p class="text-muted mb-4 fs-6">
+                All transactions are secure and encrypted. Select your preferred payment channel below:
+              </p>
+
+              <!-- GCASH Payment Option -->
+              <div class="payment-method-card" :class="{ active: form.paymentMethod === 'GCASH' }">
+                <div class="form-check payment-radio-wrapper m-0">
                   <input
                     type="radio"
-                    class="div-32"
+                    class="form-check-input"
+                    id="gcash"
+                    name="payment"
+                    value="GCASH"
+                    v-model="form.paymentMethod"
+                  />
+                  <label for="gcash" class="form-check-label payment-label">GCash (G-to-G Mobile Wallet)</label>
+                </div>
+                <div class="payment-details mt-3 pt-3 border-top" v-show="form.paymentMethod === 'GCASH'">
+                  <strong>Wallet Name:</strong> Kimberly Ley Estabas<br />
+                  <strong>Phone Number:</strong> 09772700065<br />
+                  <p class="mt-2 text-muted small">
+                    Please transfer the exact order amount to the GCash number above. Screenshot the successful transaction invoice receipt, upload it below as your proof, and place your order.
+                  </p>
+                  
+                  <div class="uploader-container mt-3 p-3">
+                    <label for="imageInput" class="btn btn-outline-success btn-sm m-0">
+                      📁 Choose Payment Screenshot
+                    </label>
+                    <input
+                      id="imageInput"
+                      type="file"
+                      accept="image/*"
+                      @change="handleImageUpload"
+                      class="d-none"
+                    />
+                    <div v-if="imageUrl" class="screenshot-preview-container mt-3 d-flex align-items-center gap-3">
+                      <img :src="imageUrl" class="screenshot-thumbnail rounded" alt="Uploaded GCash receipt" />
+                      <span class="text-success fw-bold small">✓ Receipt Attached Successfully</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- UNIONBANK Payment Option -->
+              <div class="payment-method-card" :class="{ active: form.paymentMethod === 'UNIONBANK' }">
+                <div class="form-check payment-radio-wrapper m-0">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="unionbank"
+                    name="payment"
+                    value="UNIONBANK"
+                    v-model="form.paymentMethod"
+                  />
+                  <label for="unionbank" class="form-check-label payment-label">Unionbank Bank Transfer</label>
+                </div>
+                <div class="payment-details mt-3 pt-3 border-top" v-show="form.paymentMethod === 'UNIONBANK'">
+                  <strong>Account Name:</strong> Kimberly Ley Mejia Estabas<br />
+                  <strong>Account Number:</strong> 9839182918<br />
+                  <p class="mt-2 text-muted small mb-0">
+                    Transfer payment to the Unionbank account number above. Keep a receipt for order validation.
+                  </p>
+                </div>
+              </div>
+
+              <!-- LANDBANK Payment Option -->
+              <div class="payment-method-card" :class="{ active: form.paymentMethod === 'LANDBANK' }">
+                <div class="form-check payment-radio-wrapper m-0">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="landbank"
+                    name="payment"
+                    value="LANDBANK"
+                    v-model="form.paymentMethod"
+                  />
+                  <label for="landbank" class="form-check-label payment-label">Landbank Transfer</label>
+                </div>
+                <div class="payment-details mt-3 pt-3 border-top" v-show="form.paymentMethod === 'LANDBANK'">
+                  <strong>Account Name:</strong> Kimberly Ley Mejia Estabas<br />
+                  <strong>Account Number:</strong> 9932567623<br />
+                  <p class="mt-2 text-muted small mb-0">
+                    Transfer payment to the Landbank account number above. Settle within 2 days.
+                  </p>
+                </div>
+              </div>
+
+              <!-- COD Payment Option -->
+              <div class="payment-method-card" :class="{ active: form.paymentMethod === 'COD' }">
+                <div class="form-check payment-radio-wrapper m-0">
+                  <input
+                    type="radio"
+                    class="form-check-input"
                     id="cod"
                     name="payment"
-                    value="cashonDelivery"
+                    value="COD"
+                    v-model="form.paymentMethod"
                   />
-                  <div class="div-32">cash on delivery</div>
+                  <label for="cod" class="form-check-label payment-label">Cash on Delivery (COD)</label>
+                </div>
+                <div class="payment-details mt-3 pt-3 border-top" v-show="form.paymentMethod === 'COD'">
+                  <p class="mt-2 text-muted small mb-0">
+                    Pay in cash directly to our rider courier upon receiving your package at your doorstep. Standard shipping applies.
+                  </p>
                 </div>
               </div>
+
             </div>
           </div>
-          <div class="column-2">
-            <div class="div-33">
-              <div class="div-34">
-                <div class="div-35">You order</div>
-                <div class="div-36">
-                  <div class="div-37">
-                    <div class="column-3"><div class="div-38"></div></div>
-                    <div class="column-4">
-                      <div class="div-39">
-                        <div class="div-40">Bleachpeel Soap</div>
-                        <div class="div-41">₱ 300.00</div>
-                      </div>
-                    </div>
+
+          <!-- Right Order Summary -->
+          <div class="col-12 col-lg-5">
+            <div class="checkout-card summary-card p-4 p-md-5">
+              <h3 class="section-heading border-bottom pb-3 mb-4">Your Order Summary</h3>
+              
+              <!-- Dynamic cart loop in checkout summary -->
+              <div class="checkout-items-list mb-4">
+                <div v-for="item in store.cartItems" :key="item.id" class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                  <img :src="item.image" class="checkout-item-img me-3 rounded" :alt="item.name" />
+                  <div class="flex-grow-1">
+                    <h6 class="mb-1 text-dark fw-bold">{{ item.name }}</h6>
+                    <small class="text-muted">Size: {{ item.size }} | Qty: {{ item.quantity }}</small>
                   </div>
-                </div>
-                <div class="div-42"></div>
-                <div class="div-43">
-                  <div class="div-44">
-                    <div class="column-5"><div class="div-45"></div></div>
-                    <div class="column-6">
-                      <div class="div-46">
-                        <div class="div-47">15 in 1 Soap | 135g</div>
-                        <div class="div-48">₱ 220.00</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="div-49"></div>
-                <div class="div-50">
-                  <div class="div-51">
-                    <div class="column-7"><div class="div-52"></div></div>
-                    <div class="column-8">
-                      <div class="div-53">
-                        <div class="div-54">Glutamato with Grapeseed</div>
-                        <div class="div-55">₱ 160.00</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="div-56">
-                  <div class="div-57">
-                    <div class="div-58">Subtotal</div>
-                    <div class="div-59">₱680.00</div>
+                  <div class="text-end">
+                    <span class="text-success fw-bold">₱ {{ item.totalPrice.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</span>
                   </div>
                 </div>
               </div>
-              <router-link to="/" type="button" class="div-60">Place Order</router-link>
+
+              <!-- Totals -->
+              <div class="checkout-totals bg-light p-4 rounded mb-4">
+                <div class="d-flex justify-content-between mb-2 text-muted">
+                  <span>Items Subtotal</span>
+                  <span>₱ {{ store.cartSubtotal.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3 text-muted">
+                  <span>Shipping Fee</span>
+                  <span>₱ 50.00</span>
+                </div>
+                <div class="d-flex justify-content-between pt-3 border-top border-secondary">
+                  <strong class="fs-5 text-dark">Total Order Price</strong>
+                  <strong class="fs-5 text-success">₱ {{ (store.cartSubtotal + 50.00).toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</strong>
+                </div>
+              </div>
+              
+              <button @click="handlePlaceOrder" class="btn submit-order-btn w-100 py-3 fs-5 fw-bold text-uppercase">Place Order Securely</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
+
+    <!-- Success Modal Overlay -->
+    <Transition name="fade">
+      <div v-if="showSuccessModal" class="modal-overlay">
+        <div class="modal-card p-5">
+          <div class="modal-success-icon mb-3">🎉</div>
+          <h2 class="mb-3 text-success fw-bold">Order Placed Successfully!</h2>
+          <p class="text-muted mb-2">Your Order Reference ID:</p>
+          <div class="order-id-display mb-4">{{ generatedOrderId }}</div>
+          <p class="text-muted mb-4 small">
+            Thank you for shopping with JRS Essentials! Your order is currently being processed. If you chose a mobile wallet or bank transfer, please complete the payment and send the receipt screenshot to our social channels.
+          </p>
+          <button @click="closeModal" class="btn submit-order-btn w-100 py-2">View My Orders History</button>
+        </div>
+      </div>
+    </Transition>
+
+    <FooterBar />
   </div>
-  <FooterBar />
 </template>
 
 <style scoped>
-.div-60:hover {
-  background-color: #194d2e;
-}
-.div {
-  justify-content: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
 }
-.div-2 {
-  background: linear-gradient(
-    180deg,
-    #c2efd4 0%,
-    rgba(255, 255, 255, 0) 87.34%
-  );
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  padding: 39px 20px 144px;
+
+.checkout-container {
+  background: linear-gradient(180deg, #c2efd4 0%, rgba(255, 255, 255, 0) 87.34%);
+  padding: 50px 0 100px;
+  flex: 1;
 }
-@media (max-width: 991px) {
-  .div-2 {
-    max-width: 100%;
-    padding-bottom: 100px;
-  }
+
+.checkout-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  height: 100%;
 }
-.div-3 {
-  margin-bottom: -29px;
-  width: 100%;
-  max-width: 1345px;
+
+.summary-card {
+  position: sticky;
+  top: 90px;
 }
-@media (max-width: 991px) {
-  .div-3 {
-    max-width: 100%;
-    margin-bottom: 10px;
-  }
+
+.section-heading {
+  color: #224f34;
+  font-size: 24px;
+  font-weight: 700;
 }
-.div-4 {
-  gap: 20px;
-  display: flex;
-}
-@media (max-width: 991px) {
-  .div-4 {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0px;
-  }
-}
-.column {
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 65%;
-  margin-left: 0px;
-}
-@media (max-width: 991px) {
-  .column {
-    width: 100%;
-  }
-}
-.div-5 {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-}
-@media (max-width: 991px) {
-  .div-5 {
-    max-width: 100%;
-    margin-top: 40px;
-  }
-}
-.div-6 {
-  align-items: flex-start;
+
+.form-control {
+  border: 1px solid #dee2e6;
   border-radius: 6px;
-  box-shadow: 0px 2px 10px 0px rgba(185, 166, 189, 0.1);
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #495057;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #224f34;
+  box-shadow: 0 0 0 0.25rem rgba(34, 79, 52, 0.25);
+}
+
+.form-check-input:checked {
+  background-color: #224f34;
+  border-color: #224f34;
+}
+
+/* Payment Method Card */
+.payment-method-card {
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 18px;
+  transition: all 0.3s ease;
+  background-color: #fcfcfc;
+}
+
+.payment-method-card.active {
+  border-color: #224f34;
   background-color: #fff;
+  box-shadow: 0 4px 12px rgba(34, 79, 52, 0.08);
+}
+
+.payment-radio-wrapper {
   display: flex;
-  flex-direction: column;
-  padding: 32px 36px 32px 30px;
+  align-items: center;
 }
-@media (max-width: 991px) {
-  .div-6 {
-    max-width: 100%;
-    padding: 0 20px;
-  }
+
+.form-check-input {
+  width: 1.25em;
+  height: 1.25em;
+  margin-top: 0;
+  margin-right: 12px;
+  cursor: pointer;
 }
-.div-7 {
-  color: var(--black, #383838);
-  text-transform: capitalize;
-  align-self: stretch;
-  white-space: nowrap;
-  font: 500 25px Poppins, sans-serif;
+
+.payment-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #224f34;
+  cursor: pointer;
+  margin: 0;
 }
-@media (max-width: 991px) {
-  .div-7 {
-    max-width: 100%;
-    white-space: initial;
-  }
+
+/* Image Uploader */
+.uploader-container {
+  background-color: #f8f9fa;
+  border: 1px dashed #224f34;
+  border-radius: 8px;
 }
-.div-8 {
-  color: var(--bfb-9-cf, #b0a6bd);
-  text-transform: capitalize;
-  border-radius: 4px;
-  border: 1px solid var(--8498-af, #dfe1e3);
-  background-color: #fff;
-  align-self: stretch;
-  margin-top: 32px;
-  padding: 10px;
-  font: 400 21px Poppins, sans-serif;
+
+.screenshot-thumbnail {
+  width: 60px;
+  height: 80px;
+  object-fit: cover;
+  border: 1px solid #dee2e6;
 }
-@media (max-width: 991px) {
-  .div-8 {
-    max-width: 100%;
-  }
+
+/* Order Summary Items */
+.checkout-item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border: 1px solid #eaeaea;
 }
-.div-9 {
-  align-items: start;
-  align-self: start;
+
+.submit-order-btn {
+  background-color: #224f34;
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(34, 79, 52, 0.15);
+}
+
+.submit-order-btn:hover {
+  background-color: #1a3c27;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(34, 79, 52, 0.25);
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10000;
   display: flex;
-  margin-top: 12px;
-  width: 324px;
-  max-width: 100%;
-  gap: 10px;
-}
-.img {
-  aspect-ratio: 1.2;
-  object-fit: contain;
-  object-position: center;
-  width: 18px;
-  overflow: hidden;
-  margin-top: 6px;
-  max-width: 100%;
-}
-.div-10 {
-  color: var(--697586, #697586);
-  align-self: stretch;
-  white-space: nowrap;
-  font: 400 19px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-10 {
-    white-space: initial;
-  }
-}
-.div-11 {
-  color: var(--black, #383838);
-  text-transform: capitalize;
-  align-self: stretch;
-  margin-top: 51px;
-  white-space: nowrap;
-  font: 500 25px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-11 {
-    max-width: 100%;
-    margin-top: 40px;
-    white-space: initial;
-  }
-}
-.div-12 {
-  align-self: stretch;
-  display: flex;
-  margin-top: 25px;
-  padding-right: 7px;
-  justify-content: space-between;
-  gap: 20px;
-}
-@media (max-width: 991px) {
-  .div-12 {
-    max-width: 100%;
-    flex-wrap: wrap;
-  }
-}
-.div-13 {
-  color: var(--bfb-9-cf, #b0a6bd);
-  text-transform: capitalize;
-  border-radius: 4px;
-  border: 1px solid var(--8498-af, #dfe1e3);
-  background-color: #fff;
-  flex-grow: 1;
-  padding: 10px;
-  font: 400 21px Poppins, sans-serif;
-}
-.div-14 {
-  color: var(--bfb-9-cf, #b0a6bd);
-  text-transform: capitalize;
-  border-radius: 4px;
-  border: 1px solid var(--8498-af, #dfe1e3);
-  background-color: #fff;
-  flex-grow: 1;
-  padding: 10px;
-  font: 400 21px Poppins, sans-serif;
-}
-.div-15 {
-  color: var(--bfb-9-cf, #b0a6bd);
-  text-transform: capitalize;
-  border-radius: 4px;
-  border: 1px solid var(--8498-af, #dfe1e3);
-  background-color: #fff;
-  align-self: stretch;
-  margin-top: 12px;
-  padding: 10px;
-  font: 400 21px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-15 {
-    max-width: 100%;
-  }
-}
-.div-16 {
-  align-self: stretch;
-  display: flex;
-  margin-top: 12px;
-  padding-right: 7px;
-  justify-content: space-between;
-  gap: 20px;
-}
-@media (max-width: 991px) {
-  .div-16 {
-    max-width: 100%;
-    flex-wrap: wrap;
-  }
-}
-.div-17 {
-  color: var(--bfb-9-cf, #b0a6bd);
-  text-transform: capitalize;
-  border-radius: 4px;
-  border: 1px solid var(--8498-af, #dfe1e3);
-  background-color: #fff;
-  flex-grow: 1;
-  padding: 10px;
-  font: 400 21px Poppins, sans-serif;
-}
-.div-18 {
-  color: var(--bfb-9-cf, #b0a6bd);
-  text-transform: capitalize;
-  border-radius: 4px;
-  border: 1px solid var(--8498-af, #dfe1e3);
-  background-color: #fff;
-  flex-grow: 1;
-  padding: 10px;
-  font: 400 21px Poppins, sans-serif;
-}
-.div-19 {
-  color: var(--bfb-9-cf, #b0a6bd);
-  text-transform: capitalize;
-  border-radius: 4px;
-  border: 1px solid var(--8498-af, #dfe1e3);
-  background-color: #fff;
-  align-self: stretch;
-  margin-top: 12px;
-  padding: 10px;
-  font: 400 21px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-19 {
-    max-width: 100%;
-  }
-}
-.div-20 {
-  color: var(--bfb-9-cf, #b0a6bd);
-  text-transform: capitalize;
-  align-self: stretch;
-  margin-top: 12px;
-  white-space: nowrap;
-  font: 400 17px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-20 {
-    max-width: 100%;
-    white-space: initial;
-  }
-}
-.div-21 {
-  align-items: flex-start;
-  align-self: stretch;
-  border-radius: 4px;
-  border: 1.2px solid var(--8498-af, #dfe1e3);
-  background-color: #fff;
-  display: flex;
-  height: 52px;
-  flex-direction: column;
-}
-@media (max-width: 991px) {
-  .div-21 {
-    max-width: 100%;
-  }
-}
-.div-22 {
-  color: var(--697586, #697586);
-  align-self: stretch;
-  margin-top: 57px;
-  font: 400 19px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-22 {
-    max-width: 100%;
-    margin-top: 40px;
-  }
-}
-.div-23 {
+  align-items: center;
   justify-content: center;
-  align-self: stretch;
-  display: flex;
-  margin-top: 27px;
-  flex-direction: column;
+  backdrop-filter: blur(4px);
 }
-@media (max-width: 991px) {
-  .div-23 {
-    max-width: 100%;
-  }
-}
-.div-24 {
-  align-items: center;
-  background-color: rgba(176, 166, 189, 0.1);
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 12px 276px 12px 10px;
-}
-@media (max-width: 991px) {
-  .div-24 {
-    max-width: 100%;
-    flex-wrap: wrap;
-    padding-right: 20px;
-  }
-}
-.img-2 {
-  aspect-ratio: 1;
-  object-fit: contain;
-  object-position: center;
-  width: 18px;
-  overflow: hidden;
-  max-width: 100%;
-  margin: auto 0;
-}
-.div-25 {
-  color: var(--black, #383838);
-  text-transform: uppercase;
-  align-self: stretch;
-  flex-grow: 1;
-  flex-basis: auto;
-  font: 500 19px/142% Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-25 {
-    max-width: 100%;
-  }
-}
-.div-26 {
-  color: var(--697586, #697586);
-  margin-top: 10px;
-  font: 400 19px/116% Montserrat, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-26 {
-    max-width: 100%;
-  }
-}
-.div-27 {
-  justify-content: center;
-  align-self: stretch;
-  display: flex;
-  margin-top: 27px;
-  flex-direction: column;
-}
-@media (max-width: 991px) {
-  .div-27 {
-    max-width: 100%;
-  }
-}
-.div-28 {
-  align-items: center;
-  background-color: rgba(176, 166, 189, 0.1);
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 12px 274px 12px 10px;
-}
-@media (max-width: 991px) {
-  .div-28 {
-    max-width: 100%;
-    flex-wrap: wrap;
-    padding-right: 20px;
-  }
-}
-.img-3 {
-  aspect-ratio: 1;
-  object-fit: contain;
-  object-position: center;
-  width: 18px;
-  overflow: hidden;
-  max-width: 100%;
-  margin: auto 0;
-}
-.div-29 {
-  color: var(--black, #383838);
-  text-transform: uppercase;
-  align-self: stretch;
-  flex-grow: 1;
-  flex-basis: auto;
-  font: 500 19px/142% Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-29 {
-    max-width: 100%;
-  }
-}
-.div-30 {
-  color: var(--697586, #697586);
-  margin-top: 10px;
-  font: 400 19px/116% Montserrat, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-30 {
-    max-width: 100%;
-  }
-}
-.div-31 {
-  align-items: center;
-  background-color: rgba(176, 166, 189, 0.1);
-  align-self: stretch;
-  display: flex;
-  margin-top: 27px;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 12px 276px 12px 10px;
-}
-@media (max-width: 991px) {
-  .div-31 {
-    max-width: 100%;
-    flex-wrap: wrap;
-    padding-right: 20px;
-  }
-}
-.img-4 {
-  aspect-ratio: 1;
-  object-fit: contain;
-  object-position: center;
-  width: 18px;
-  overflow: hidden;
-  max-width: 100%;
-  margin: auto 0;
-}
-.div-32 {
-  color: var(--black, #383838);
-  text-transform: uppercase;
-  align-self: stretch;
-  flex-grow: 1;
-  flex-basis: auto;
-  font: 500 19px/142% Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-32 {
-    max-width: 100%;
-  }
-}
-.column-2 {
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 35%;
-  margin-left: 20px;
-}
-@media (max-width: 991px) {
-  .column-2 {
-    width: 100%;
-  }
-}
-.div-33 {
-  display: flex;
-  flex-direction: column;
-}
-@media (max-width: 991px) {
-  .div-33 {
-    max-width: 100%;
-    margin-top: 40px;
-  }
-}
-.div-34 {
-  border-radius: 6px;
-  box-shadow: 0px 2px 10px 0px rgba(185, 166, 189, 0.1);
+
+.modal-card {
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  text-align: center;
 }
-@media (max-width: 991px) {
-  .div-34 {
-    max-width: 100%;
-  }
+
+.modal-success-icon {
+  font-size: 64px;
+  line-height: 1;
 }
-.div-35 {
-  color: var(--black, #383838);
-  white-space: nowrap;
-  font: 500 25px Poppins, sans-serif;
+
+.order-id-display {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 2px dashed #4caf50;
+  display: inline-block;
+  letter-spacing: 2px;
 }
-@media (max-width: 991px) {
-  .div-35 {
-    white-space: initial;
-  }
+
+/* Transitions */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.4s ease;
 }
-.div-36 {
-  margin-top: 30px;
-}
-.div-37 {
-  gap: 20px;
-  display: flex;
-}
-@media (max-width: 991px) {
-  .div-37 {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0px;
-  }
-}
-.column-3 {
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 26%;
-  margin-left: 0px;
-}
-@media (max-width: 991px) {
-  .column-3 {
-    width: 100%;
-  }
-}
-.div-38 {
-  background-color: #f7f6f8;
-  display: flex;
-  width: 100px;
-  height: 100px;
-  flex-direction: column;
-  margin: 0 auto;
-}
-@media (max-width: 991px) {
-  .div-38 {
-    margin-top: 10px;
-  }
-}
-.column-4 {
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 74%;
-  margin-left: 20px;
-}
-@media (max-width: 991px) {
-  .column-4 {
-    width: 100%;
-  }
-}
-.div-39 {
-  display: flex;
-  flex-direction: column;
-}
-@media (max-width: 991px) {
-  .div-39 {
-    margin-top: 10px;
-  }
-}
-.div-40 {
-  color: var(--black, #383838);
-  text-transform: capitalize;
-  white-space: nowrap;
-  font: 500 21px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-40 {
-    white-space: initial;
-  }
-}
-.div-41 {
-  color: var(--black, #383838);
-  text-transform: capitalize;
-  margin-top: 9px;
-  white-space: nowrap;
-  font: 400 19px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-41 {
-    white-space: initial;
-  }
-}
-.div-42 {
-  background-color: #dfe1e3;
-  margin-top: 19px;
-  height: 1px;
-}
-.div-43 {
-  margin-top: 20px;
-}
-.div-44 {
-  gap: 20px;
-  display: flex;
-}
-@media (max-width: 991px) {
-  .div-44 {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0px;
-  }
-}
-.column-5 {
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 26%;
-  margin-left: 0px;
-}
-@media (max-width: 991px) {
-  .column-5 {
-    width: 100%;
-  }
-}
-.div-45 {
-  background-color: #f7f6f8;
-  display: flex;
-  width: 100px;
-  height: 100px;
-  flex-direction: column;
-  margin: 0 auto;
-}
-@media (max-width: 991px) {
-  .div-45 {
-    margin-top: 10px;
-  }
-}
-.column-6 {
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 74%;
-  margin-left: 20px;
-}
-@media (max-width: 991px) {
-  .column-6 {
-    width: 100%;
-  }
-}
-.div-46 {
-  display: flex;
-  flex-direction: column;
-}
-@media (max-width: 991px) {
-  .div-46 {
-    margin-top: 10px;
-  }
-}
-.div-47 {
-  color: var(--black, #383838);
-  text-transform: capitalize;
-  white-space: nowrap;
-  font: 500 21px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-47 {
-    white-space: initial;
-  }
-}
-.div-48 {
-  color: var(--black, #383838);
-  text-transform: capitalize;
-  margin-top: 9px;
-  white-space: nowrap;
-  font: 400 19px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-48 {
-    white-space: initial;
-  }
-}
-.div-49 {
-  background-color: #dfe1e3;
-  margin-top: 19px;
-  height: 1px;
-}
-.div-50 {
-  margin-top: 20px;
-}
-.div-51 {
-  gap: 20px;
-  display: flex;
-}
-@media (max-width: 991px) {
-  .div-51 {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0px;
-  }
-}
-.column-7 {
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 26%;
-  margin-left: 0px;
-}
-@media (max-width: 991px) {
-  .column-7 {
-    width: 100%;
-  }
-}
-.div-52 {
-  background-color: #f7f6f8;
-  display: flex;
-  width: 100px;
-  height: 100px;
-  flex-direction: column;
-  margin: 0 auto;
-}
-@media (max-width: 991px) {
-  .div-52 {
-    margin-top: 10px;
-  }
-}
-.column-8 {
-  display: flex;
-  flex-direction: column;
-  line-height: normal;
-  width: 74%;
-  margin-left: 20px;
-}
-@media (max-width: 991px) {
-  .column-8 {
-    width: 100%;
-  }
-}
-.div-53 {
-  display: flex;
-  flex-direction: column;
-}
-@media (max-width: 991px) {
-  .div-53 {
-    margin-top: 10px;
-  }
-}
-.div-54 {
-  color: var(--black, #383838);
-  text-transform: capitalize;
-  white-space: nowrap;
-  font: 500 21px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-54 {
-    white-space: initial;
-  }
-}
-.div-55 {
-  color: var(--black, #383838);
-  text-transform: capitalize;
-  margin-top: 9px;
-  white-space: nowrap;
-  font: 400 19px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-55 {
-    white-space: initial;
-  }
-}
-.div-56 {
-  display: flex;
-  margin-top: 40px;
-  flex-direction: column;
-}
-.div-57 {
-  justify-content: space-between;
-  display: flex;
-  gap: 20px;
-}
-.div-58 {
-  color: var(--bfb-9-cf, #b0a6bd);
-  text-transform: uppercase;
-  font: 400 21px/86% Poppins, sans-serif;
-}
-.div-59 {
-  color: var(--bfb-9-cf, #b0a6bd);
-  text-align: right;
-  text-transform: uppercase;
-  font: 400 21px/86% Poppins, sans-serif;
-}
-.div-60 {
-  color: var(--white, #fff);
-  text-transform: capitalize;
-  white-space: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 4px;
-  background-color: #328b56;
-  align-self: start;
-  width: 362px;
-  max-width: 100%;
-  margin: 60px 0 0 10px;
-  padding: 10px 20px;
-  font: 600 21px Poppins, sans-serif;
-}
-@media (max-width: 991px) {
-  .div-60 {
-    white-space: initial;
-    margin-top: 40px;
-  }
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 </style>

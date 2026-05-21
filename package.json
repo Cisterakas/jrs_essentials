@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "chart.js": "^4.5.1",
     "mdb-vue-ui-kit": "^4.1.1",
     "swiper": "^11.0.3",
     "vue": "^3.2.36",
+    "vue-chartjs": "^5.3.3",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {

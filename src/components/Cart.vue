@@ -1,933 +1,374 @@
 <script setup>
-import NavigationBar from './NavigationBar.vue'
-import FooterBar from './Footer.vue'
-import { ref } from 'vue';
+import NavigationBar from './NavigationBar.vue';
+import FooterBar from './Footer.vue';
+import { store } from '../store';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 
-const counters = ref([1, 1, 1]);
-const initialPrices = ref([150, 110, 80]);
-const prices = [150, 110, 80];
-
-const increment = (index) => {
-  counters.value[index]++;
-  initialPrices.value[index] += prices[index];
-};
-
-const decrement = (index) => {
-  if (counters.value[index]) {
-    counters.value[index]--;
-    initialPrices.value[index] -= prices[index];
-  } else {
-    counters.value[index] = 0;
-    initialPrices.value[index] = 0;
+const increment = (productId) => {
+  const item = store.cart.find(i => i.productId === Number(productId));
+  if (item) {
+    store.updateCartQuantity(productId, item.quantity + 1);
   }
 };
 
-const deleteAll = (index) => {
-  counters.value[index] = 0;
-  initialPrices.value[index] = 0;
+const decrement = (productId) => {
+  const item = store.cart.find(i => i.productId === Number(productId));
+  if (item && item.quantity > 1) {
+    store.updateCartQuantity(productId, item.quantity - 1);
+  } else {
+    store.removeFromCart(productId);
+  }
 };
 
-const calculateTotal = () => {
-  return initialPrices.value.reduce((sum, price) => sum + price, 0);
+const deleteItem = (productId) => {
+  store.removeFromCart(productId);
+};
+
+const clearAll = () => {
+  store.clearCart();
+};
+
+const goToProducts = () => {
+  router.push('/products');
 };
 </script>
 
 <template>
-    <NavigationBar/>
-    <div class="div">
-      <div class="div-2">
-        <div class="div-3">
-          <div class="div-4">
-            <div class="div-5">Shopping Cart</div>
-            <div class="div-6">
-              <div class="div-7">In processing</div>
-              <div type="button" class="div-8">cancel</div>
+  <div class="page-wrapper">
+    <NavigationBar />
+    
+    <main class="cart-container">
+      <div class="container">
+        
+        <div class="cart-card">
+          <!-- Cart Header -->
+          <div class="cart-header">
+            <h1 class="cart-title">Shopping Cart</h1>
+            <div class="cart-actions" v-if="store.cartItems.length > 0">
+              <span class="cart-count">Items in cart: <strong>{{ store.cartItemCount }}</strong></span>
+              <button @click="clearAll" class="btn btn-outline-danger btn-sm">Clear All</button>
             </div>
           </div>
-          <div class="div-9">
-            <div class="div-10">
-              <div class="div-11">
-                <div class="div-12">
-                  <div class="column"><div class="div-13"></div></div>
-                  <div class="column-2">
-                    <div class="div-14">
-                      <div class="div-15">Bleachpeel Soap</div>
-                      <div class="div-16">
-                        <div class="div-17">
-                          
-                          <div type="button" class="div-18" @click="decrement(0)">-</div>
-                          <div class="div-19">{{ counters[0] }}</div>
-                          <div type="button" class="div-20" @click="increment(0)">+</div>
-                        </div>
-                        <img
-                          type="button"
-                          loading="lazy"
-                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/453c7b02-cab0-44bc-87b6-17f047db798b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                          class="img"
-                          @click="deleteAll(0)"
-                        />
+
+          <!-- Empty State -->
+          <div v-if="store.cartItems.length === 0" class="empty-state py-5 text-center">
+            <img 
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/4932dfa6-4cd9-4213-9f5e-355636d2c18a?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&" 
+              class="empty-icon mb-3" 
+              alt="Empty Cart"
+            />
+            <h3 class="empty-title">Your shopping cart is empty</h3>
+            <p class="empty-desc text-muted">Treat your skin to some organic essentials today!</p>
+            <button @click="goToProducts" class="btn shop-now-btn mt-3">Start Shopping</button>
+          </div>
+
+          <!-- Active Cart List -->
+          <div v-else class="cart-items-wrapper">
+            
+            <!-- Cart Items -->
+            <div v-for="item in store.cartItems" :key="item.id" class="cart-item py-3 border-bottom">
+              <div class="row align-items-center">
+                <!-- Image & Name -->
+                <div class="col-12 col-md-6 mb-3 mb-md-0 d-flex align-items-center gap-3">
+                  <div class="item-img-wrapper flex-shrink-0">
+                    <img :src="item.image" class="item-img" :alt="item.name" />
+                  </div>
+                  <div class="item-info">
+                    <h5 class="item-name mb-2">{{ item.name }} <span class="text-muted fw-normal">| {{ item.size }}</span></h5>
+                    
+                    <!-- Mobile Quantity Controls -->
+                    <div class="d-flex align-items-center gap-3 d-md-none">
+                      <div class="qty-controls">
+                        <button class="qty-btn" @click="decrement(item.id)">-</button>
+                        <span class="qty-val">{{ item.quantity }}</span>
+                        <button class="qty-btn" @click="increment(item.id)">+</button>
                       </div>
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/453c7b02-cab0-44bc-87b6-17f047db798b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                        class="delete-icon"
+                        @click="deleteItem(item.id)"
+                        alt="Remove"
+                      />
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="div-21">
-                <div class="div-22">{{ counters[0] }} pcs</div>
-                <div class="div-23">Total:</div>
-              </div>
-              <div class="div-24">
-                <div class="div-25">₱ 150.00</div>
-                <div class="div-26">₱ {{ initialPrices[0] }}.00</div>
+
+                <!-- Desktop Quantity Controls -->
+                <div class="col-6 col-md-3 d-none d-md-flex align-items-center justify-content-center gap-3">
+                  <div class="qty-controls">
+                    <button class="qty-btn" @click="decrement(item.id)">-</button>
+                    <span class="qty-val">{{ item.quantity }}</span>
+                    <button class="qty-btn" @click="increment(item.id)">+</button>
+                  </div>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/453c7b02-cab0-44bc-87b6-17f047db798b?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
+                    class="delete-icon"
+                    @click="deleteItem(item.id)"
+                    alt="Remove"
+                  />
+                </div>
+
+                <!-- Price & Total -->
+                <div class="col-6 col-md-3 text-end d-flex flex-column align-items-end justify-content-center">
+                  <div class="item-unit-price text-muted">₱ {{ item.price.toLocaleString('en-US', { minimumFractionDigits: 2 }) }} each</div>
+                  <div class="item-total-price fw-bold">₱ {{ item.totalPrice.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</div>
+                </div>
               </div>
             </div>
-            <div class="div-27"></div>
-            <div class="div-28">
-              <div class="div-29">
-                <div class="div-30">
-                  <div class="column"><div class="div-31"></div></div>
-                  <div class="column-3">
-                    <div class="div-32">
-                      <div class="div-33">15 in 1 Soap | 135g</div>
-                      <div class="div-34">
-                        
-                        <div class="div-35">
-                          
-                          <div type="button" class="div-36" @click="decrement(1)">-</div>
-                          <div class="div-37">{{ counters[1] }}</div>
-                          <div type="button" class="div-38" @click="increment(1)">+</div>
-                        </div>
-                        <img
-                          type="button"
-                          loading="lazy"
-                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/a2d08b6f-cc0d-409f-9d03-c32aad893a36?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                          class="img"
-                          @click="deleteAll(1)"
-                        />
-                      </div>
-                    </div>
+
+            <!-- Order Summary -->
+            <div class="row justify-content-end mt-4">
+              <div class="col-12 col-md-6 col-lg-5">
+                <div class="summary-card p-4 rounded bg-light">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="text-muted">Items Subtotal</span>
+                    <span class="fw-medium">₱ {{ store.cartSubtotal.toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-3">
+                    <span class="text-muted">Shipping Fee</span>
+                    <span class="fw-medium">₱ 50.00</span>
+                  </div>
+                  <hr>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <span class="total-label fw-bold">Total Order Value</span>
+                    <span class="total-value fw-bold">₱ {{ (store.cartSubtotal + 50.00).toLocaleString('en-US', { minimumFractionDigits: 2 }) }}</span>
                   </div>
                 </div>
               </div>
-              <div class="div-39">
-                <div class="div-40">{{ counters[1] }} pcs</div>
-                <div class="div-41">Total:</div>
-              </div>
-              <div class="div-42">
-                <div class="div-43">₱ 110.00</div>
-                <div class="div-44">₱ {{ initialPrices[1] }}.00</div>
-              </div>
             </div>
-            <div class="div-45"></div>
-            <div class="div-46">
-              <div class="div-47">
-                <div class="div-48">
-                  <div class="column"><div class="div-49"></div></div>
-                  <div class="column-4">
-                    <div class="div-50">
-                      <div class="div-51">Glutamato with Grapeseed</div>
-                      <div class="div-52">
-                        
-                        <div class="div-53">
-                          
-                          <div type="button" class="div-54" @click="decrement(2)">-</div>
-                          <div class="div-55">{{ counters[2] }}</div>
-                          <div type="button" class="div-56" @click="increment(2)">+</div>
-                        </div>
-                        <img
-                          type="button"
-                          loading="lazy"
-                          src="https://cdn.builder.io/api/v1/image/assets/TEMP/a2d08b6f-cc0d-409f-9d03-c32aad893a36?apiKey=3f6a7ddee9ae46558dc54af7e96aa0c9&"
-                          class="img"
-                          @click="deleteAll(2)"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="div-57">
-                <div class="div-58">{{ counters[2] }} pcs</div>
-                <div class="div-59">Total:</div>
-              </div>
-              <div class="div-60">
-                <div class="div-61">₱ 80.00</div>
-                <div class="div-62">₱ {{ initialPrices[2] }}.00</div>
-              </div>
-            </div>
-            <div class="div-63"></div>
-            <div class="div-64">
-              <div class="div-65">Total</div>
-              <div class="div-66">₱ {{ calculateTotal() }}.00</div>
-            </div>
-            <div class="div-67">
-              <div class="div-68">Delivery</div>
-              <div class="div-69">0</div>
-            </div>
-            <div class="div-70">
-              <div class="div-71">Subotal</div>
-              <div class="div-72">₱ {{ calculateTotal() }}.00</div>
-            </div>
+            
           </div>
         </div>
-      </div>
-      <div class="div-73">
-        <input type="text" class="div-74" placeholder="Add a Note to Your Order">
-        <router-link to="/checkout" type="button" class="div-75">Check Out</router-link>
-       
-      </div>
-    </div>
-    <FooterBar/>
-  </template>
-  
-  
-  
-  <style scoped>
-  .div {
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-  }
-  .div-2 {
-    background: linear-gradient(
-      180deg,
-      #c2efd4 0%,
-      rgba(255, 255, 255, 0) 87.34%
-    );
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    padding: 100px 20px 55px;
-  }
-  @media (max-width: 991px) {
-    .div-2 {
-      max-width: 100%;
-    }
-  }
-  .div-3 {
-    border-radius: 6px;
-    box-shadow: 0px 2px 10px 0px rgba(185, 166, 189, 0.1);
-    background-color: #fff;
-    display: flex;
-    width: 1053px;
-    max-width: 100%;
-    flex-direction: column;
-    padding: 22px 0 14px;
-  }
-  .div-4 {
-    display: flex;
-    flex-direction: column;
-    padding: 0 34px;
-  }
-  @media (max-width: 991px) {
-    .div-4 {
-      max-width: 100%;
-      padding: 0 20px;
-    }
-  }
-  .div-5 {
-    color: var(--black, #383838);
-    text-transform: capitalize;
-    white-space: nowrap;
-    font: 500 29px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-5 {
-      max-width: 100%;
-      white-space: initial;
-    }
-  }
-  .div-6 {
-    align-self: end;
-    display: flex;
-    margin-top: 16px;
-    width: 291px;
-    max-width: 100%;
-    align-items: start;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  .div-7 {
-    color: var(--bfb-9-cf, #b0a6bd);
-    text-align: right;
-    text-transform: capitalize;
-    margin-top: 9px;
-    font: 400 25px Poppins, sans-serif;
-  }
-  .div-8 {
-    color: var(--697586, #697586);
-    text-transform: capitalize;
-    align-self: stretch;
-    white-space: nowrap;
-    font: 500 25px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-8 {
-      white-space: initial;
-    }
-  }
-  .div-9 {
-    display: flex;
-    margin-top: 16px;
-    flex-direction: column;
-    padding: 0 34px;
-  }
-  @media (max-width: 991px) {
-    .div-9 {
-      max-width: 100%;
-      padding: 0 20px;
-    }
-  }
-  .div-10 {
-    align-items: start;
-    align-self: stretch;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  @media (max-width: 991px) {
-    .div-10 {
-      max-width: 100%;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  }
-  
-  @media (max-width: 991px) {
-    .div-11 {
-      max-width: 100%;
-    }
-  }
-  .div-12 {
-    gap: 20px;
-    display: flex;
-  }
-  @media (max-width: 991px) {
-    .div-12 {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0px;
-    }
-  }
-  .column {
-    display: flex;
-    flex-direction: column;
-    line-height: normal;
-    width: 19%;
-    margin-left: 0px;
-  }
-  @media (max-width: 991px) {
-    .column {
-      width: 100%;
-    }
-  }
-  .div-13 {
-    background-color: #f7f6f8;
-    display: flex;
-    width: 100px;
-    height: 100px;
-    flex-direction: column;
-    margin: 0 auto;
-  }
-  @media (max-width: 991px) {
-    .div-13 {
-      margin-top: 10px;
-    }
-  }
-  .column-2 {
-    display: flex;
-    flex-direction: column;
-    line-height: normal;
-    width: 81%;
-    margin-left: 20px;
-  }
-  @media (max-width: 991px) {
-    .column-2 {
-      width: 100%;
-    }
-  }
-  .div-14 {
-    display: flex;
-    flex-direction: column;
-  }
-  @media (max-width: 991px) {
-    .div-14 {
-      margin-top: 10px;
-    }
-  }
-  .div-15 {
-    overflow: hidden;
-    color: var(--black, #383838);
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-transform: capitalize;
-    font: 500 25px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-15 {
-      white-space: initial;
-    }
-  }
-  .div-16 {
-    align-self: start;
-    display: flex;
-    margin-top: 38px;
-    width: 113px;
-    max-width: 100%;
-    gap: 9px;
-  }
-  .div-17 {
-    border-radius: 4px;
-    border: 1px solid var(--8498-af, #dfe1e3);
-    display: flex;
-    gap: 8px;
-    padding: 0 8px;
-  }
-  @media (max-width: 991px) {
-    .div-17 {
-      justify-content: center;
-    }
-  }
-  .div-18 {
-    color: var(--black, #383838);
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-19 {
-    color: var(--black, #383838);
-    text-align: center;
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-20 {
-    color: var(--black, #383838);
-    text-transform: capitalize;
-    white-space: nowrap;
-    font: 400 23px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-20 {
-      white-space: initial;
-    }
-  }
-  .img {
-    aspect-ratio: 1;
-    object-fit: contain;
-    object-position: center;
-    width: 8px;
-    overflow: hidden;
-    align-self: center;
-    max-width: 100%;
-    margin: auto 0;
-  }
-  .div-21 {
-    align-self: stretch;
-    display: flex;
-    flex-basis: 0%;
-    flex-direction: column;
-  }
-  .div-22 {
-    color: var(--bfb-9-cf, #b0a6bd);
-    text-align: right;
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-23 {
-    color: var(--bfb-9-cf, #b0a6bd);
-    text-align: right;
-    text-transform: capitalize;
-    margin-top: 35px;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-24 {
-    justify-content: center;
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
-  }
-  .div-25 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-26 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    margin-top: 35px;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-27 {
-    background-color: #dfe1e3;
-    align-self: stretch;
-    margin-top: 24px;
-    height: 1px;
-  }
-  @media (max-width: 991px) {
-    .div-27 {
-      max-width: 100%;
-    }
-  }
-  .div-28 {
-    align-items: start;
-    align-self: stretch;
-    display: flex;
-    margin-top: 30px;
-    width: 100%;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  @media (max-width: 991px) {
-    .div-28 {
-      max-width: 100%;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  }
- 
-  @media (max-width: 991px) {
-    .div-29 {
-      max-width: 100%;
-    }
-  }
-  .div-30 {
-    gap: 20px;
-    display: flex;
-  }
-  @media (max-width: 991px) {
-    .div-30 {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0px;
-    }
-  }
-  .div-31 {
-    background-color: #f7f6f8;
-    display: flex;
-    width: 100px;
-    height: 100px;
-    flex-direction: column;
-    margin: 0 auto;
-  }
-  @media (max-width: 991px) {
-    .div-31 {
-      margin-top: 10px;
-    }
-  }
-  .column-3 {
-    display: flex;
-    flex-direction: column;
-    line-height: normal;
-    width: 81%;
-    margin-left: 20px;
-  }
-  @media (max-width: 991px) {
-    .column-3 {
-      width: 100%;
-    }
-  }
-  .div-32 {
-    display: flex;
-    flex-direction: column;
-  }
-  @media (max-width: 991px) {
-    .div-32 {
-      margin-top: 10px;
-    }
-  }
-  .div-33 {
-    overflow: hidden;
-    color: var(--black, #383838);
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-transform: capitalize;
-    font: 500 25px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-33 {
-      white-space: initial;
-    }
-  }
-  .div-34 {
-    align-self: start;
-    display: flex;
-    margin-top: 38px;
-    width: 113px;
-    max-width: 100%;
-    gap: 9px;
-  }
-  .div-35 {
-    border-radius: 4px;
-    border: 1px solid var(--8498-af, #dfe1e3);
-    display: flex;
-    gap: 8px;
-    padding: 0 8px;
-  }
-  @media (max-width: 991px) {
-    .div-35 {
-      justify-content: center;
-    }
-  }
-  .div-36 {
-    color: var(--black, #383838);
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-37 {
-    color: var(--black, #383838);
-    text-align: center;
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-38 {
-    color: var(--black, #383838);
-    text-transform: capitalize;
-    white-space: nowrap;
-    font: 400 23px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-38 {
-      white-space: initial;
-    }
-  }
-  .div-39 {
-    align-self: stretch;
-    display: flex;
-    flex-basis: 0%;
-    flex-direction: column;
-  }
-  .div-40 {
-    color: var(--bfb-9-cf, #b0a6bd);
-    text-align: right;
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-41 {
-    color: var(--bfb-9-cf, #b0a6bd);
-    text-align: right;
-    text-transform: capitalize;
-    margin-top: 35px;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-42 {
-    justify-content: center;
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
-  }
-  .div-43 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-44 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    margin-top: 35px;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-45 {
-    background-color: #dfe1e3;
-    align-self: stretch;
-    margin-top: 24px;
-    height: 1px;
-  }
-  @media (max-width: 991px) {
-    .div-45 {
-      max-width: 100%;
-    }
-  }
-  .div-46 {
-    align-items: start;
-    align-self: stretch;
-    display: flex;
-    margin-top: 30px;
-    width: 100%;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  @media (max-width: 991px) {
-    .div-46 {
-      max-width: 100%;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  }
 
-  @media (max-width: 991px) {
-    .div-47 {
-      max-width: 100%;
-    }
-  }
-  .div-48 {
-    gap: 20px;
-    display: flex;
-  }
-  @media (max-width: 991px) {
-    .div-48 {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0px;
-    }
-  }
-  .div-49 {
-    background-color: #f7f6f8;
-    display: flex;
-    width: 100px;
-    height: 100px;
-    flex-direction: column;
-    margin: 0 auto;
-  }
-  @media (max-width: 991px) {
-    .div-49 {
-      margin-top: 10px;
-    }
-  }
-  .column-4 {
-    display: flex;
-    flex-direction: column;
-    line-height: normal;
-    width: 81%;
-    margin-left: 20px;
-  }
-  @media (max-width: 991px) {
-    .column-4 {
-      width: 100%;
-    }
-  }
-  .div-50 {
-    display: flex;
-    flex-direction: column;
-  }
-  @media (max-width: 991px) {
-    .div-50 {
-      margin-top: 10px;
-    }
-  }
-  .div-51 {
-    overflow: hidden;
-    color: var(--black, #383838);
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-transform: capitalize;
-    font: 500 25px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-51 {
-      white-space: initial;
-    }
-  }
-  .div-52 {
-    align-self: start;
-    display: flex;
-    margin-top: 38px;
-    width: 113px;
-    max-width: 100%;
-    gap: 9px;
-  }
-  .div-53 {
-    border-radius: 4px;
-    border: 1px solid var(--8498-af, #dfe1e3);
-    display: flex;
-    gap: 8px;
-    padding: 0 8px;
-  }
-  @media (max-width: 991px) {
-    .div-53 {
-      justify-content: center;
-    }
-  }
-  .div-54 {
-    color: var(--black, #383838);
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-55 {
-    color: var(--black, #383838);
-    text-align: center;
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-56 {
-    color: var(--black, #383838);
-    text-transform: capitalize;
-    white-space: nowrap;
-    font: 400 23px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-56 {
-      white-space: initial;
-    }
-  }
-  .div-57 {
-    align-self: stretch;
-    display: flex;
-    flex-basis: 0%;
-    flex-direction: column;
-  }
-  .div-58 {
-    color: var(--bfb-9-cf, #b0a6bd);
-    text-align: right;
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-59 {
-    color: var(--bfb-9-cf, #b0a6bd);
-    text-align: right;
-    text-transform: capitalize;
-    margin-top: 35px;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-60 {
-    justify-content: center;
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
-  }
-  .div-61 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-62 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    margin-top: 35px;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-63 {
-    background-color: #dfe1e3;
-    align-self: stretch;
-    margin-top: 24px;
-    height: 1px;
-  }
-  @media (max-width: 991px) {
-    .div-63 {
-      max-width: 100%;
-    }
-  }
-  .div-64 {
-    align-items: center;
-    align-self: end;
-    display: flex;
-    margin-top: 27px;
-    width: 231px;
-    max-width: 100%;
-    gap: 10px;
-  }
-  .div-65 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    margin: auto 0;
-    font: 400 23px Montserrat, sans-serif;
-  }
-  .div-66 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-67 {
-    align-self: end;
-    display: flex;
-    margin-top: 12px;
-    width: 231px;
-    max-width: 100%;
-    gap: 10px;
-  }
-  .div-68 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    flex: 1;
-    font: 400 23px Montserrat, sans-serif;
-  }
-  .div-69 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    flex: 1;
-    font: 400 23px Montserrat, sans-serif;
-  }
-  .div-70 {
-    align-items: center;
-    align-self: end;
-    display: flex;
-    margin-top: 12px;
-    width: 231px;
-    max-width: 100%;
-    gap: 10px;
-  }
-  .div-71 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    margin: auto 0;
-    font: 500 23px Montserrat, sans-serif;
-  }
-  .div-72 {
-    color: var(--black, #383838);
-    text-align: right;
-    text-transform: capitalize;
-    font: 400 23px Poppins, sans-serif;
-  }
-  .div-73 {
-    align-self: center;
-    z-index: 1;
-    display: flex;
-    width: 980px;
-    max-width: 100%;
-    flex-direction: column;
-    margin: -28px 0 227px;
-  }
-  @media (max-width: 991px) {
-    .div-73 {
-      margin-bottom: 40px;
-    }
-  }
-  .div-74 {
-    color: var(--bfb-9-cf, #2b2830);
-    border-radius: 4px;
-    border: 1px solid var(--8498-af, #dfe1e3);
-    background-color: #fff;
-    padding: 10px 10px 82px;
-    font: 400 25px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-74 {
-      max-width: 100%;
-    }
-  }
-  .div-75 {
-    color: var(--white, #fff);
-    text-transform: capitalize;
-    white-space: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 4px;
-    background-color: #328b56;
-    align-self: start;
-    margin-top: 87px;
-    width: 362px;
-    max-width: 100%;
-    padding: 10px 20px;
-    font: 600 25px Poppins, sans-serif;
-  }
-  @media (max-width: 991px) {
-    .div-75 {
-      white-space: initial;
-      margin-top: 40px;
-    }
-  }
-  .div-75:hover{
-    background-color: #257545;
-  }
-  </style>
+        <!-- Bottom Checkout Bar -->
+        <div v-if="store.cartItems.length > 0" class="checkout-bar row mt-4 gx-3">
+          <div class="col-12 col-md-8 mb-3 mb-md-0">
+            <input type="text" class="form-control checkout-note" placeholder="Add a Special Note or Request to Your Order...">
+          </div>
+          <div class="col-12 col-md-4">
+            <router-link to="/checkout" class="btn checkout-btn w-100">Proceed to Checkout</router-link>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <FooterBar />
+  </div>
+</template>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cart-container {
+  background: linear-gradient(180deg, #c2efd4 0%, rgba(255, 255, 255, 0) 87.34%);
+  padding: 60px 0;
+  flex: 1;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.cart-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 35px;
+}
+
+@media (max-width: 768px) {
+  .cart-container { padding: 30px 0; }
+  .cart-card { padding: 20px; }
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cart-title {
+  color: #224f34;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-count {
+  color: #666;
+  font-size: 15px;
+}
+
+.btn-outline-danger {
+  color: #d9534f;
+  border: 1px solid #d9534f;
+  background: transparent;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+/* Empty State */
+.empty-icon {
+  width: 100px;
+  opacity: 0.4;
+  filter: grayscale(1) sepia(1) hue-rotate(90deg);
+}
+
+.empty-title {
+  color: #224f34;
+  font-weight: 600;
+}
+
+.shop-now-btn {
+  background-color: #224f34;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.shop-now-btn:hover {
+  background-color: #1a3c27;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(34, 79, 52, 0.2);
+}
+
+/* Cart Items */
+.item-img-wrapper {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eaeaea;
+}
+
+.item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-name {
+  color: #224f34;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.qty-controls {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  background: #f7f7f7;
+  border: none;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  color: #224f34;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qty-btn:hover {
+  background-color: #224f34;
+  color: #fff;
+}
+
+.qty-val {
+  min-width: 30px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.delete-icon {
+  width: 24px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.delete-icon:hover {
+  opacity: 1;
+  transform: scale(1.1) rotate(5deg);
+}
+
+.item-unit-price { font-size: 14px; }
+.item-total-price { color: #224f34; font-size: 18px; }
+
+/* Order Summary */
+.summary-card {
+  background-color: #f8f9fa;
+  border: 1px solid #eaeaea;
+}
+
+.total-label { color: #224f34; font-size: 18px; }
+.total-value { color: #224f34; font-size: 22px; }
+
+/* Checkout Bar */
+.checkout-note {
+  padding: 15px 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.checkout-note:focus {
+  border-color: #224f34;
+  box-shadow: 0 0 0 0.2rem rgba(34, 79, 52, 0.25);
+}
+
+.checkout-btn {
+  background-color: #224f34;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(34, 79, 52, 0.15);
+}
+
+.checkout-btn:hover {
+  background-color: #1a3c27;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(34, 79, 52, 0.25);
+}
+</style>
